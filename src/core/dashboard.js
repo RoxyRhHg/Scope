@@ -58,6 +58,22 @@ export function getAvailableConcepts(stocks) {
   return ["全部概念", ...Array.from(concepts).sort((left, right) => left.localeCompare(right, "zh-CN"))];
 }
 
+function normalizeSelectedIndustry(selectedIndustry, industries) {
+  if (!selectedIndustry || selectedIndustry === "全部行业") {
+    return "全部行业";
+  }
+
+  return industries.some((item) => item.industry === selectedIndustry) ? selectedIndustry : "全部行业";
+}
+
+function normalizeSelectedConcept(selectedConcept, availableConcepts) {
+  if (!selectedConcept || selectedConcept === "全部概念") {
+    return "全部概念";
+  }
+
+  return availableConcepts.includes(selectedConcept) ? selectedConcept : "全部概念";
+}
+
 function applyFrontFilters(rankedStocks, settings) {
   return rankedStocks.filter((stock) => {
     const industryOkay =
@@ -77,11 +93,17 @@ function applyFrontFilters(rankedStocks, settings) {
 export function buildDashboardModel(snapshot, settings) {
   const filteredByRisk = applyRiskFilters(snapshot.items, settings);
   const rankedAll = rankStocks(snapshot.items, settings);
-  const rankedVisible = applyFrontFilters(rankedAll, settings);
   const industries = summarizeIndustries(rankedAll);
+  const availableConcepts = getAvailableConcepts(snapshot.items);
+  const normalizedSettings = {
+    ...settings,
+    selectedIndustry: normalizeSelectedIndustry(settings.selectedIndustry, industries),
+    selectedConcept: normalizeSelectedConcept(settings.selectedConcept, availableConcepts),
+  };
+  const rankedVisible = applyFrontFilters(rankedAll, normalizedSettings);
   const selectedIndustry =
-    settings.selectedIndustry && settings.selectedIndustry !== "全部行业"
-      ? settings.selectedIndustry
+    normalizedSettings.selectedIndustry && normalizedSettings.selectedIndustry !== "全部行业"
+      ? normalizedSettings.selectedIndustry
       : industries[0]?.industry ?? "全部行业";
   const sectorTop = buildIndustryTop(rankedAll, selectedIndustry, 20);
   const focus = pickFocusStocks(rankedAll, settings);
@@ -95,7 +117,8 @@ export function buildDashboardModel(snapshot, settings) {
     focus,
     sectorTop,
     selectedIndustry,
-    availableConcepts: getAvailableConcepts(snapshot.items),
+    availableConcepts,
+    normalizedSettings,
     eligibleCount: filteredByRisk.eligible.length,
     excludedCount: filteredByRisk.excluded.length,
     excludedPreview: filteredByRisk.excluded.slice(0, 5),

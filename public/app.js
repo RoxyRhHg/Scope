@@ -113,6 +113,10 @@ function hasCorruptText(value) {
 function getModel() {
   const snapshot = getSnapshot();
   const model = buildDashboardModel(snapshot, state.settings);
+  if (model.normalizedSettings) {
+    state.settings.selectedIndustry = model.normalizedSettings.selectedIndustry;
+    state.settings.selectedConcept = model.normalizedSettings.selectedConcept;
+  }
 
   if (!state.selectedCode) {
     state.selectedCode = model.focus[0]?.code || model.top50[0]?.code || model.rankedAll[0]?.code || null;
