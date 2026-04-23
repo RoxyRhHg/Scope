@@ -28,25 +28,28 @@ function makeBars(direction = "up", count = 60) {
 }
 
 test("computeTechnicalSnapshot returns major indicator sections for an upward trend", () => {
-  const snapshot = computeTechnicalSnapshot(makeBars("up"));
+  const snapshot = computeTechnicalSnapshot(makeBars("up", 320));
 
   assert.equal(typeof snapshot.macd.diff, "number");
   assert.equal(typeof snapshot.boll.upper, "number");
   assert.equal(typeof snapshot.kdj.k, "number");
   assert.equal(typeof snapshot.volume.ratio, "number");
+  assert.equal(typeof snapshot.weekly60.close, "number");
+  assert.equal(typeof snapshot.weekly60.ma60, "number");
   assert.equal(snapshot.trend.bias, "bullish");
 });
 
 test("computeTechnicalSnapshot detects weaker technical state for a downtrend", () => {
-  const snapshot = computeTechnicalSnapshot(makeBars("down"));
+  const snapshot = computeTechnicalSnapshot(makeBars("down", 320));
 
   assert.equal(snapshot.trend.bias, "bearish");
   assert.equal(snapshot.macd.diff < snapshot.macd.dea || snapshot.macd.histogram <= 0, true);
   assert.equal(snapshot.kdj.k <= 50 || snapshot.kdj.j <= 50, true);
+  assert.equal(snapshot.weekly60.position === "below" || snapshot.weekly60.slope === "down", true);
 });
 
 test("buildTechnicalNarrative creates readable analysis for the detail card", () => {
-  const snapshot = computeTechnicalSnapshot(makeBars("up"));
+  const snapshot = computeTechnicalSnapshot(makeBars("up", 320));
   const lines = buildTechnicalNarrative(snapshot);
 
   assert.equal(Array.isArray(lines), true);
@@ -55,4 +58,5 @@ test("buildTechnicalNarrative creates readable analysis for the detail card", ()
   assert.equal(lines.some((line) => line.includes("BOLL")), true);
   assert.equal(lines.some((line) => line.includes("KDJ")), true);
   assert.equal(lines.some((line) => line.includes("成交量")), true);
+  assert.equal(lines.some((line) => line.includes("60周K")), true);
 });

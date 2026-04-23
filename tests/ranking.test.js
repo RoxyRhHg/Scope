@@ -155,47 +155,28 @@ test("rankStocks keeps high-heat stocks out when core score is below threshold",
 
 test("pickFocusStocks returns at most two names and only from qualified candidates", () => {
   const ranked = [
-    computeStockScores(
-      makeStock({
-        code: "600100",
-        name: "重仓候选A",
-        metrics: {
-          businessQuality: 87,
-          profitability: 84,
-          cashFlow: 83,
-          balanceSheet: 85,
-          valuation: 78,
-          stability: 81,
-          industryProsperity: 71,
-          conceptHeat: 36,
-          catalyst: 67,
-          liquidity: 79,
-          concentrationFit: 85,
-          volatilityFit: 78,
-        },
-      }),
-      settings,
-    ),
-    computeStockScores(
-      makeStock({
-        code: "600101",
-        name: "重仓候选B",
-        metrics: {
-          businessQuality: 84,
-          profitability: 82,
-          cashFlow: 80,
-          balanceSheet: 82,
-          valuation: 76,
-          stability: 80,
-          industryProsperity: 69,
-          conceptHeat: 32,
-          catalyst: 61,
-          liquidity: 76,
-          concentrationFit: 81,
-          volatilityFit: 75,
-        },
-      }),
-      settings,
+    ...Array.from({ length: 12 }, (_, index) =>
+      computeStockScores(
+        makeStock({
+          code: `6001${String(index).padStart(2, "0")}`,
+          name: `重仓候选${index + 1}`,
+          metrics: {
+            businessQuality: 88 - index * 0.4,
+            profitability: 84 - index * 0.3,
+            cashFlow: 83 - index * 0.3,
+            balanceSheet: 85 - index * 0.2,
+            valuation: 78 - index * 0.2,
+            stability: 81 - index * 0.2,
+            industryProsperity: 71,
+            conceptHeat: 36,
+            catalyst: 67,
+            liquidity: 79,
+            concentrationFit: 85,
+            volatilityFit: 78,
+          },
+        }),
+        settings,
+      ),
     ),
     computeStockScores(
       makeStock({
@@ -223,11 +204,9 @@ test("pickFocusStocks returns at most two names and only from qualified candidat
 
   const focus = pickFocusStocks(ranked, settings);
 
-  assert.equal(focus.length, 2);
-  assert.deepEqual(
-    focus.map((item) => item.name),
-    ["重仓候选A", "重仓候选B"],
-  );
+  assert.equal(focus.length, 10);
+  assert.equal(focus[0].name, "重仓候选1");
+  assert.equal(focus.at(-1).name, "重仓候选10");
 });
 
 test("buildIndustryTop limits sector recommendations to 20 names", () => {
