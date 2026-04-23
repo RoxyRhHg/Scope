@@ -264,7 +264,7 @@ export function rankStocks(stocks, settings = {}) {
     .sort((left, right) => right.scores.total - left.scores.total);
 }
 
-export function pickFocusStocks(rankedStocks, settings = {}) {
+export function pickFocusStocks(rankedStocks, settings = {}, limit = 10) {
   const thresholds = getThresholds(settings);
 
   return rankedStocks
@@ -272,7 +272,7 @@ export function pickFocusStocks(rankedStocks, settings = {}) {
     .filter((stock) => stock.riskFlags.length <= thresholds.maxRiskFlagsForFocus)
     .filter((stock) => stock.valuationCard.status !== "偏高估")
     .filter((stock) => stock.scores.capitalFit >= 60)
-    .slice(0, 2);
+    .slice(0, limit);
 }
 
 export function buildIndustryTop(rankedStocks, industry, limit = 20) {

@@ -264,6 +264,8 @@ test("normalizeSpotRow maps raw live data to dashboard stock shape", () => {
   assert.deepEqual(stock.concepts, ["白酒", "高端消费"]);
   assert.equal(stock.lotCost, 152033);
   assert.equal(stock.metrics.valuation > 0, true);
+  assert.equal(typeof stock.financials.roeProxy, "number");
+  assert.equal(typeof stock.financials.freeCashFlowYieldProxy, "number");
 });
 
 test("buildIndustryLookup and normalizeConceptLookup keep first industry and limit concepts", () => {

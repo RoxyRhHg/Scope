@@ -104,6 +104,12 @@ function getSnapshot() {
   return state.snapshot ?? createSampleSnapshot(state.iteration);
 }
 
+function hasCorruptText(value) {
+  if (value === null || value === undefined) return false;
+  const text = typeof value === "string" ? value : JSON.stringify(value);
+  return /�|鍟|鐩|璧|涓|鏍|绛|鑲|鎬|熷|棰|�/.test(text);
+}
+
 function getModel() {
   const snapshot = getSnapshot();
   const model = buildDashboardModel(snapshot, state.settings);
@@ -177,6 +183,69 @@ function buildCapitalFitNarrative(stock) {
   return `对你当前资金体量而言，单手成本或波动适配一般，更适合作为候选观察而不是当前重仓首选。`;
 }
 
+function describeScore(score) {
+  if (score >= 82) return "优秀";
+  if (score >= 72) return "良好";
+  if (score >= 62) return "中性偏强";
+  if (score >= 52) return "中性";
+  return "偏弱";
+}
+
+function renderResearchReport(stock) {
+  const roe = stock.financials?.roeProxy;
+  const fcfYield = stock.financials?.freeCashFlowYieldProxy;
+  const roeText = roe === null || roe === undefined ? "暂无" : `${roe}%`;
+  const fcfText = fcfYield === null || fcfYield === undefined ? "暂无" : `${fcfYield}%`;
+
+  return `
+    <section class="detail-block report-block">
+      <h3>投资逻辑与 Buffett 视角</h3>
+      <p class="report-lead">${stock.name} 当前进入候选池，主要来自核心价值分 ${stock.scores.core}、总分 ${stock.scores.total} 与行业/资金适配的综合结果。以下判断以商业质量、盈利质量、现金流、资产负债和估值安全边际为主，主题催化只作为辅助验证。</p>
+      <div class="report-points">
+        <article>
+          <h4>1. 商业质量：${describeScore(stock.metrics.businessQuality)}</h4>
+          <p>商业质量得分 ${stock.metrics.businessQuality}/100，行业归属为「${stock.industry}」。系统主要依据市值规模、行业映射、成交活跃度及估值代理指标判断公司是否具备更强的可跟踪性。若公司处于稳定行业且规模较大，通常说明其业务韧性和信息透明度更适合长期研究。</p>
+        </article>
+        <article>
+          <h4>2. 盈利与现金流：ROE / 自由现金流收益率</h4>
+          <p>ROE 代理值为 ${roeText}，自由现金流收益率代理值为 ${fcfText}。在当前免费数据源约束下，ROE 由 PB/PE 关系近似反推，自由现金流收益率由 PE 与现金流质量分进行折算；这两个指标比单纯看净利润更接近 Buffett 所强调的“真实股东回报能力”。后续接入完整财报后，会替换为真实 ROE、ROIC、经营现金流和自由现金流。</p>
+        </article>
+        <article>
+          <h4>3. 资产负债安全：${describeScore(stock.metrics.balanceSheet)}</h4>
+          <p>资产负债安全得分 ${stock.metrics.balanceSheet}/100，主要由 PB、流通市值、换手率稳定性等代理因子估计。Buffett 框架下，这一项的含义不是追求高弹性，而是尽量避开财务压力过大的公司，降低永久性本金损失概率。</p>
+        </article>
+        <article>
+          <h4>4. 估值与安全边际：${stock.valuationCard.status}</h4>
+          <p>估值得分 ${stock.metrics.valuation}/100，当前价格 ${stock.price.toFixed(2)}，系统估算安全边际为 ${formatPercent(stock.valuationCard.marginOfSafety)}。该估值是首版模型的快速估计，不等同于正式 DCF，但能用于在全市场中初步筛除明显过热标的。</p>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function renderValuationReport(stock) {
+  const card = stock.valuationCard;
+  const discountToConservative = ((card.conservativeValue - stock.price) / Math.max(card.conservativeValue, 1)) * 100;
+  const upsideToOptimistic = ((card.optimisticValue - stock.price) / Math.max(stock.price, 1)) * 100;
+  const buyRange = `${card.buyRangeLow.toFixed(2)} - ${card.buyRangeHigh.toFixed(2)}`;
+
+  return `
+    <section class="detail-block valuation-report">
+      <h3>详细估值卡</h3>
+      <div class="valuation-grid">
+        <div><span>当前价格</span><strong>${stock.price.toFixed(2)}</strong></div>
+        <div><span>估值状态</span><strong>${card.status}</strong></div>
+        <div><span>建议关注区间</span><strong>${buyRange}</strong></div>
+        <div><span>安全边际</span><strong>${formatPercent(card.marginOfSafety)}</strong></div>
+        <div><span>保守估值</span><strong>${card.conservativeValue.toFixed(2)}</strong></div>
+        <div><span>乐观估值</span><strong>${card.optimisticValue.toFixed(2)}</strong></div>
+      </div>
+      <p>估值解释：若价格落入建议关注区间，说明相对保守估值已经留出更高折扣；若价格高于保守估值较多，则更适合观察而非追买。当前相对保守估值折让为 ${formatPercent(discountToConservative)}，相对乐观估值潜在空间为 ${formatPercent(upsideToOptimistic)}。</p>
+      <p>方法说明：首版估值卡使用估值分位、动态 PE/PB、ROE 代理、自由现金流收益率代理、价格与模型内在价值区间推算。它用于排序和预警，不替代正式财务建模；后续接入完整财报后可升级为股息折现、Owner Earnings 与情景估值三段式模型。</p>
+    </section>
+  `;
+}
+
 function getSelectedStock(model) {
   return (
     model.rankedAll.find((item) => item.code === state.selectedCode) ||
@@ -201,6 +270,9 @@ async function loadDashboard(force = false) {
     }
 
     const payload = await response.json();
+    if (hasCorruptText(payload.snapshot?.items?.slice(0, 120))) {
+      throw new Error("live payload contains corrupted text");
+    }
     state.snapshot = payload.snapshot;
     state.sourceMode = payload.source ?? payload.snapshot?.mode ?? "live";
     state.sourceWarning = payload.warning ?? null;
@@ -263,6 +335,7 @@ function renderTechnicalBlock(stock) {
         <div class="tech-item"><span>BOLL</span><strong>${technical.snapshot.boll.position}</strong><small>上 ${technical.snapshot.boll.upper} / 中 ${technical.snapshot.boll.middle} / 下 ${technical.snapshot.boll.lower}</small></div>
         <div class="tech-item"><span>KDJ</span><strong>K ${technical.snapshot.kdj.k}</strong><small>D ${technical.snapshot.kdj.d} · J ${technical.snapshot.kdj.j}</small></div>
         <div class="tech-item"><span>成交量</span><strong>${technical.snapshot.volume.ratio} 倍</strong><small>近 5 日均量对比，状态 ${technical.snapshot.volume.trend}</small></div>
+        <div class="tech-item"><span>60周K</span><strong>${technical.snapshot.weekly60.position === "above" ? "站上均线" : "低于均线"}</strong><small>MA60 ${technical.snapshot.weekly60.ma60} · 斜率 ${technical.snapshot.weekly60.slope}</small></div>
       </div>
       <ul class="technical-list">
         ${technical.analysis.map((line) => `<li>${line}</li>`).join("")}
@@ -418,8 +491,8 @@ function render() {
         <section class="panel section">
           <div class="section-header">
             <div>
-              <h2 class="section-title">重点关注 1-2 只</h2>
-              <p class="section-subtitle">先从最适合你当前资金画像的小资金高集中候选开始。</p>
+              <h2 class="section-title">重点关注 10 只</h2>
+              <p class="section-subtitle">从全市场候选池里筛出 10 只最值得继续研究的高优先级标的。</p>
             </div>
             <span class="badge gold">Buffett 主评分优先</span>
           </div>
@@ -594,41 +667,9 @@ function render() {
               </div>
 
               <div class="detail-grid">
-                <section class="detail-block">
-                  <h3>为什么它能入选</h3>
-                  <ul>${buildReasonList(selectedStock).map((item) => `<li>${item}</li>`).join("")}</ul>
-                </section>
-                <section class="detail-block">
-                  <h3>Buffett 视角</h3>
-                  <p>${selectedStock.summary}</p>
-                  <ul>
-                    <li>商业质量 ${selectedStock.metrics.businessQuality} / 100</li>
-                    <li>盈利质量 ${selectedStock.metrics.profitability} / 100</li>
-                    <li>现金流质量 ${selectedStock.metrics.cashFlow} / 100</li>
-                    <li>资产负债安全 ${selectedStock.metrics.balanceSheet} / 100</li>
-                  </ul>
-                </section>
-                <section class="detail-block">
-                  <h3>详细估值卡</h3>
-                  <ul>
-                    <li>估值状态：${selectedStock.valuationCard.status}</li>
-                    <li>建议关注区间：${selectedStock.valuationCard.buyRangeLow.toFixed(2)} - ${selectedStock.valuationCard.buyRangeHigh.toFixed(2)}</li>
-                    <li>保守估值：${selectedStock.valuationCard.conservativeValue.toFixed(2)}</li>
-                    <li>乐观估值：${selectedStock.valuationCard.optimisticValue.toFixed(2)}</li>
-                  </ul>
-                </section>
-                <section class="detail-block">
-                  <h3>主要风险</h3>
-                  <ul>${buildRiskList(selectedStock).map((item) => `<li>${item}</li>`).join("")}</ul>
-                </section>
+                ${renderResearchReport(selectedStock)}
+                ${renderValuationReport(selectedStock)}
                 ${renderTechnicalBlock(selectedStock)}
-                <section class="detail-block">
-                  <h3>小资金适配说明</h3>
-                  <p>${buildCapitalFitNarrative(selectedStock)}</p>
-                  <div class="tag-list">
-                    ${selectedStock.concepts.map((concept) => `<span class="tag">${concept}</span>`).join("")}
-                  </div>
-                </section>
               </div>
             `
             : `<div class="summary-card"><p class="stock-summary">当前没有可展示的个股详情。</p></div>`

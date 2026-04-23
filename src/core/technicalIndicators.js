@@ -113,17 +113,52 @@ function computeVolumeSignal(bars, period = 5) {
   };
 }
 
-function inferBias({ macd, boll, kdj, volume, close, previousClose }) {
+function computeWeekly60(bars) {
+  const weeks = [];
+
+  for (let index = 0; index < bars.length; index += 5) {
+    const chunk = bars.slice(index, index + 5);
+    if (!chunk.length) continue;
+    weeks.push({
+      date: chunk.at(-1).date,
+      close: chunk.at(-1).close,
+      high: Math.max(...chunk.map((item) => item.high)),
+      low: Math.min(...chunk.map((item) => item.low)),
+      volume: chunk.reduce((sum, item) => sum + item.volume, 0),
+    });
+  }
+
+  const recent = weeks.slice(-60);
+  const close = recent.at(-1)?.close ?? bars.at(-1)?.close ?? 0;
+  const ma60 = average(recent.map((item) => item.close));
+  const previousMa = average(recent.slice(0, -4).map((item) => item.close));
+  const position = close >= ma60 ? "above" : "below";
+  let slope = "flat";
+  if (ma60 > previousMa * 1.01) slope = "up";
+  if (ma60 < previousMa * 0.99) slope = "down";
+
+  return {
+    close: round(close),
+    ma60: round(ma60),
+    position,
+    slope,
+    weekCount: recent.length,
+  };
+}
+
+function inferBias({ macd, boll, kdj, volume, weekly60, close, previousClose }) {
   let score = 0;
 
-  if (macd.diff > macd.dea) score += 1;
-  if (macd.histogram > 0) score += 1;
+  if (macd.diff >= macd.dea) score += 1;
+  if (macd.histogram >= 0) score += 1;
   if (boll.position === "upper-half" || boll.position === "upper-break") score += 1;
-  if (kdj.k > kdj.d && kdj.j > 50) score += 1;
+  if (kdj.k >= kdj.d && kdj.j > 50) score += 1;
   if (volume.trend === "expanding" && close >= previousClose) score += 1;
+  if (weekly60.position === "above" && weekly60.slope === "up") score += 1;
   if (boll.position === "lower-half" || boll.position === "lower-break") score -= 1;
-  if (kdj.k < kdj.d && kdj.j < 50) score -= 1;
-  if (macd.histogram < 0) score -= 1;
+  if (kdj.k <= kdj.d && kdj.j < 50) score -= 1;
+  if (macd.histogram <= 0) score -= 1;
+  if (weekly60.position === "below" && weekly60.slope === "down") score -= 1;
 
   if (score >= 3) return "bullish";
   if (score <= -1) return "bearish";
@@ -140,6 +175,7 @@ export function computeTechnicalSnapshot(bars) {
   const boll = computeBoll(closes);
   const kdj = computeKdj(bars);
   const volume = computeVolumeSignal(bars);
+  const weekly60 = computeWeekly60(bars);
   const close = closes.at(-1) ?? 0;
   const previousClose = closes.at(-2) ?? close;
 
@@ -150,8 +186,9 @@ export function computeTechnicalSnapshot(bars) {
     boll,
     kdj,
     volume,
+    weekly60,
     trend: {
-      bias: inferBias({ macd, boll, kdj, volume, close, previousClose }),
+      bias: inferBias({ macd, boll, kdj, volume, weekly60, close, previousClose }),
     },
   };
 }
@@ -191,6 +228,14 @@ export function buildTechnicalNarrative(snapshot) {
     lines.push(`成交量缩到近 5 日均量的 ${snapshot.volume.ratio} 倍，走势延续性要再确认。`);
   } else {
     lines.push(`成交量基本平稳，说明当前更像自然换手。`);
+  }
+
+  if (snapshot.weekly60.position === "above" && snapshot.weekly60.slope === "up") {
+    lines.push(`60周K 位于长期均线之上，且 60 周均线向上，说明中期结构仍偏健康。`);
+  } else if (snapshot.weekly60.position === "below" && snapshot.weekly60.slope === "down") {
+    lines.push(`60周K 位于长期均线之下，且 60 周均线下行，中期趋势仍需等待修复。`);
+  } else {
+    lines.push(`60周K 与 60 周均线关系偏中性，当前更适合结合估值和基本面耐心观察。`);
   }
 
   lines.push(

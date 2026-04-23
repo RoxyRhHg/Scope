@@ -109,6 +109,17 @@ function scoreVolatilityFit(changePct, ytdChange) {
   return clamp(Math.round(84 - drag), 22, 88);
 }
 
+function estimateRoe(pe, pb) {
+  if (pe <= 0 || pb <= 0) return null;
+  return Math.round((pb / pe) * 10000) / 100;
+}
+
+function estimateFreeCashFlowYield(pe, cashFlowScore) {
+  if (pe <= 0) return null;
+  const qualityAdjustment = clamp(cashFlowScore / 75, 0.55, 1.25);
+  return Math.round((100 / pe) * qualityAdjustment * 100) / 100;
+}
+
 export function buildIndustryLookup(industries) {
   const lookup = new Map();
 
@@ -160,6 +171,8 @@ export function normalizeSpotRow(row, industryLookup, conceptLookup, industryRan
   const industry = industryLookup.get(code) ?? "未分类";
   const concepts = conceptLookup.get(code) ?? [];
   const industryRank = industryRankInfo.lookup.get(industry) ?? 0;
+  const profitabilityScore = scoreProfitability(pe, pb, marketCap);
+  const cashFlowScore = scoreCashFlow(pe, turnover);
 
   return {
     code,
@@ -181,8 +194,8 @@ export function normalizeSpotRow(row, industryLookup, conceptLookup, industryRan
     riskFlags: [],
     metrics: {
       businessQuality: scoreBusinessQuality(marketCap, pe),
-      profitability: scoreProfitability(pe, pb, marketCap),
-      cashFlow: scoreCashFlow(pe, turnover),
+      profitability: profitabilityScore,
+      cashFlow: cashFlowScore,
       balanceSheet: scoreBalanceSheet(pb, turnover),
       valuation: scoreValuation(pe, pb),
       stability: scoreStability(changePct, ytdChange),
@@ -200,6 +213,10 @@ export function normalizeSpotRow(row, industryLookup, conceptLookup, industryRan
       turnover,
       marketCap,
       flowMarketCap,
+    },
+    financials: {
+      roeProxy: estimateRoe(pe, pb),
+      freeCashFlowYieldProxy: estimateFreeCashFlowYield(pe, cashFlowScore),
     },
   };
 }

@@ -8,7 +8,7 @@ import { test } from "./harness.js";
 
 function makeBars(direction = "up", count = 60) {
   return Array.from({ length: count }, (_, index) => {
-    const base = direction === "up" ? 10 + index * 0.28 : 28 - index * 0.28;
+    const base = direction === "up" ? 10 + index * 0.28 : 128 - index * 0.28;
     const drift = direction === "up" ? 0.18 : -0.18;
     const close = Number((base + drift).toFixed(2));
     const open = Number((close - (direction === "up" ? 0.12 : -0.12)).toFixed(2));

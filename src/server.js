@@ -82,7 +82,11 @@ function loadCacheFromDisk() {
       return null;
     }
 
-    const parsed = JSON.parse(fs.readFileSync(cacheFile, "utf8"));
+    const raw = fs.readFileSync(cacheFile, "utf8");
+    if (raw.includes("�")) {
+      return null;
+    }
+    const parsed = JSON.parse(raw);
     return parsed;
   } catch {
     return null;
