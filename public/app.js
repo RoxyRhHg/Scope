@@ -87,6 +87,19 @@ function timeUntilRefresh() {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
+function formatDateTime(value) {
+  if (!value) return "暂无";
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "暂无";
+  return parsed.toLocaleString("zh-CN", {
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+}
+
 function getSnapshot() {
   return state.snapshot ?? createSampleSnapshot(state.iteration);
 }
@@ -360,6 +373,7 @@ function render() {
         <div class="sidebar-card">
           <div class="detail-kicker">刷新控制</div>
           <p class="muted">自动刷新：每小时一次。当前倒计时 ${timeUntilRefresh()}。</p>
+          <p class="muted">最近数据更新时间：${formatDateTime(model.snapshot.generatedAt)}</p>
           <div class="button-row">
             <button class="button primary" id="refreshButton">${state.isLoading ? "正在刷新..." : "手动刷新"}</button>
             <button class="button secondary" id="resetButton">恢复默认权重</button>

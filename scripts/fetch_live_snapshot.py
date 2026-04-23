@@ -188,7 +188,7 @@ def main():
         "industries": industries,
         "concepts": concepts,
     }
-    json.dump(payload, sys.stdout, ensure_ascii=False)
+    json.dump(payload, sys.stdout, ensure_ascii=True)
 
 
 if __name__ == "__main__":
