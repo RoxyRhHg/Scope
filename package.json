@@ -1,0 +1,15 @@
+{
+  "name": "scope-buffett-a-share-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node tests/run-tests.js",
+    "tauri:dev": "set PATH=%USERPROFILE%\\.cargo\\bin;%PATH%&& tauri dev",
+    "tauri:build": "set PATH=%USERPROFILE%\\.cargo\\bin;%PATH%&& tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}
