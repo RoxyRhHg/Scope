@@ -1,5 +1,6 @@
 import { buildDashboardModel, createDefaultSettings } from "../src/core/dashboard.js";
 import { createSampleSnapshot, SAMPLE_MODE_NOTE } from "../src/core/sampleData.js";
+import { buildMasterProfileData, buildDailyReviewData, renderMasterProfileMarkdown, renderDailyReviewMarkdown } from "../src/core/obsidianAdapter.js";
 
 const STORAGE_KEY = "scope-buffett-mvp-state";
 const REFRESH_INTERVAL_MS = 60 * 60 * 1000;
@@ -43,6 +44,8 @@ const state = {
     },
   },
   selectedCode: persisted.selectedCode ?? null,
+  obsidianVaultPath: persisted.obsidianVaultPath ?? "",
+  detailTab: "overview",
 };
 
 function loadState() {
@@ -62,6 +65,7 @@ function saveState() {
       settings: state.settings,
       selectedCode: state.selectedCode,
       sourceMode: state.sourceMode,
+      obsidianVaultPath: state.obsidianVaultPath,
     }),
   );
 }
@@ -348,6 +352,376 @@ function renderTechnicalBlock(stock) {
       ${technical.warning ? `<p class="muted">${technical.warning}</p>` : ""}
     </section>
   `;
+}
+
+function renderDetailPanel(stock) {
+  const technicals = getTechnicalPayload(stock.code);
+  const masterData = buildMasterProfileData(stock, technicals);
+  const dailyData = buildDailyReviewData(stock, technicals);
+  const tab = state.detailTab;
+
+  const tabs = [
+    ["overview", "概览"],
+    ["financials", "财务"],
+    ["valuation", "估值"],
+    ["execution", "执行"],
+  ];
+
+  return `
+    <div class="detail-top">
+      <div>
+        <div class="chip-row">
+          <span class="badge primary">${stock.conclusion}</span>
+          <span class="chip">${stock.industry}</span>
+          <span class="chip">${masterData.valuationStatus}</span>
+          ${masterData.technicalStatus ? `<span class="chip">${masterData.technicalStatus}</span>` : ""}
+        </div>
+        <div class="detail-stock-name">${stock.name}</div>
+        <small>${stock.code}.${stock.market} · 单手成本 ${formatCurrency(stock.lotCost)} · ${masterData.currentPosition}/${masterData.currentStage}</small>
+      </div>
+      <div class="stock-price">
+        <div class="price-number">${stock.price.toFixed(2)}</div>
+        <div class="price-change ${(masterData.safetyMargin === "强" || masterData.safetyMargin === "中") ? "up" : "down"}">安全边际 ${masterData.safetyMargin}</div>
+      </div>
+    </div>
+
+    <div class="detail-scores">
+      <div class="detail-score"><span class="mini-label">总分</span><strong>${stock.scores.total}</strong></div>
+      <div class="detail-score"><span class="mini-label">价值分</span><strong>${stock.scores.core}</strong></div>
+      <div class="detail-score"><span class="mini-label">主题分</span><strong>${stock.scores.auxiliary}</strong></div>
+      <div class="detail-score"><span class="mini-label">资金适配</span><strong>${stock.scores.capitalFit}</strong></div>
+    </div>
+
+    <div class="detail-tabs">
+      ${tabs.map(([key, label]) => `
+        <button class="detail-tab ${tab === key ? "active" : ""}" data-tab="${key}">${label}</button>
+      `).join("")}
+    </div>
+
+    <div class="detail-tab-content">
+      ${renderTabContent(tab, masterData, dailyData, stock, technicals)}
+    </div>
+
+    <div class="detail-export-bar">
+      <button class="button small primary" id="copyMasterBtn" title="复制标的主档案 Markdown">复制主档案</button>
+      <button class="button small secondary" id="copyDailyBtn" title="复制每日复盘 Markdown">复制复盘</button>
+      <button class="button small secondary" id="downloadMasterBtn" title="下载标的主档案 .md 文件">下载档案</button>
+      <button class="button small secondary" id="exportObsidianBtn" title="写入 Obsidian Vault">写入 Obsidian</button>
+    </div>
+    <div class="detail-export-bar">
+      <input type="text" id="vaultPathInput" class="vault-path-input" placeholder="Obsidian Vault 路径，如 E:/Obsdian/Script/1/财经/选股" value="${state.obsidianVaultPath}" />
+      <button class="button small secondary" id="saveVaultPathBtn">保存路径</button>
+    </div>
+  `;
+}
+
+function renderTabContent(tab, masterData, dailyData, stock, technicals) {
+  switch (tab) {
+    case "overview":
+      return renderOverviewTab(masterData, stock, technicals);
+    case "financials":
+      return renderFinancialsTab(masterData);
+    case "valuation":
+      return renderValuationTab(masterData, stock, technicals);
+    case "execution":
+      return renderExecutionTab(masterData, stock);
+    default:
+      return "";
+  }
+}
+
+function renderOverviewTab(data, stock, technicals) {
+  const consensus = stock.consensus ?? {};
+  return `
+    <section class="detail-block">
+      <h3>动态摘要</h3>
+      <div class="profile-summary">
+        <div class="summary-row"><span>当前定位</span><strong>${data.currentPosition} / ${data.currentStage}</strong></div>
+        <div class="summary-row"><span>基本面结论</span><strong>${data.fundamentalConclusion}</strong></div>
+        <div class="summary-row"><span>估值状态</span><strong>${data.valuationStatus}</strong></div>
+        <div class="summary-row"><span>技术状态</span><strong>${data.technicalStatus}</strong></div>
+        <div class="summary-row"><span>建议买入区</span><strong>${data.suggestedBuyZone || "待定"}</strong></div>
+        <div class="summary-row"><span>建议卖出区</span><strong>${data.suggestedSellZone || "待定"}</strong></div>
+      </div>
+    </section>
+
+    <section class="detail-block">
+      <h3>标的基础信息</h3>
+      <div class="profile-summary">
+        <div class="summary-row"><span>代码</span><strong>${data.code}</strong></div>
+        <div class="summary-row"><span>行业</span><strong>${data.industry}</strong></div>
+        <div class="summary-row"><span>资产模式</span><strong>${data.assetMode}</strong></div>
+        <div class="summary-row"><span>企业属性</span><strong>${data.enterpriseNature}</strong></div>
+        <div class="summary-row"><span>分类标签</span><strong>${data.classificationTags.join(" / ")}</strong></div>
+      </div>
+    </section>
+
+    <section class="detail-block">
+      <h3>长期投资逻辑</h3>
+      <p class="report-lead">${data.coreLogic || "待补充"}</p>
+      <div class="profile-summary">
+        <div class="summary-row"><span>跟踪原因</span><strong>${data.whyTrack}</strong></div>
+        ${consensus.note ? `<div class="summary-row"><span>共识提示</span><strong>${consensus.note}</strong></div>` : ""}
+      </div>
+    </section>
+
+    <section class="detail-block">
+      <h3>商业模式</h3>
+      <div class="profile-summary">
+        <div class="summary-row"><span>护城河</span><strong>${data.businessModel.moatType}</strong></div>
+        <div class="summary-row"><span>商业质量</span><strong>${data.businessModel.moatDetail}</strong></div>
+        <div class="summary-row"><span>管理层</span><strong>${data.businessModel.managementComment}</strong></div>
+      </div>
+    </section>
+
+    ${renderTechnicalBlock(stock)}
+  `;
+}
+
+function renderFinancialsTab(data) {
+  const f = data.financials;
+  const sections = [
+    ["看花钱", [
+      ["资本支出", f.capex], ["运营支出", f.opex], ["利息支出", f.interestExpense],
+      ["结论", f.spendingConclusion],
+    ]],
+    ["看借钱", [
+      ["负债结构", f.debtStructure], ["短债压力", f.shortTermDebtPressure],
+      ["融资依赖", f.financingDependency], ["结论", f.debtConclusion],
+    ]],
+    ["看收钱", [
+      ["经营现金流", f.operatingCashFlow], ["自由现金流", f.freeCashFlow],
+      ["回款质量", f.collectionQuality], ["结论", f.cashFlowConclusion],
+    ]],
+    ["看赚钱难度", [
+      ["毛利率/净利率", `${f.grossMargin || "?"} / ${f.netMargin || "?"}`],
+      ["费用率", f.expenseRatio], ["ROE", f.roe], ["ROIC", f.roic],
+      ["结论", f.profitabilityConclusion],
+    ]],
+    ["看资产模式", [
+      ["轻重资产", f.assetMode], ["持续投入", f.assetDetail], ["结论", f.assetConclusion],
+    ]],
+    ["看稳定性", [
+      ["周期类型", f.cycleType], ["波动来源", f.volatilitySource], ["结论", f.stabilityConclusion],
+    ]],
+  ];
+
+  return sections.map(([title, rows]) => `
+    <section class="detail-block">
+      <h3>${title}</h3>
+      <div class="profile-summary">
+        ${rows.filter(([, v]) => v).map(([label, value]) => `
+          <div class="summary-row"><span>${label}</span><strong>${value || "待补充"}</strong></div>
+        `).join("")}
+        ${rows.filter(([, v]) => v).length === 0 ? `<p class="muted">待补充</p>` : ""}
+      </div>
+    </section>
+  `).join("");
+}
+
+function renderValuationTab(data, stock, technicals) {
+  const v = data.valuation;
+  const card = stock.valuationCard ?? {};
+  const mao = stock.maoValuation ?? {};
+
+  return `
+    <section class="detail-block">
+      <h3>毛估估估值</h3>
+      <div class="valuation-grid">
+        <div><span>当前价格</span><strong>${stock.price.toFixed(2)}</strong></div>
+        <div><span>估值状态</span><strong>${mao.valuationTier ?? "?"}</strong></div>
+        <div><span>内在价值中枢</span><strong>${mao.intrinsicValue?.toFixed(2) ?? "?"}</strong></div>
+        <div><span>保守估值</span><strong>${mao.conservativeValue?.toFixed(2) ?? "?"}</strong></div>
+        <div><span>乐观估值</span><strong>${mao.optimisticValue?.toFixed(2) ?? "?"}</strong></div>
+        <div><span>安全边际</span><strong>${formatPercent(mao.marginOfSafety ?? 0)}</strong></div>
+        <div><span>建议买入区间</span><strong>${mao.buyZoneLow?.toFixed(2) ?? "?"} - ${mao.buyZoneHigh?.toFixed(2) ?? "?"}</strong></div>
+        ${mao.earningsYield ? `<div><span>盈利收益率</span><strong>${mao.earningsYield}%</strong></div>` : ""}
+      </div>
+      ${mao.opportunityNote ? `<p class="muted">${mao.opportunityNote}</p>` : ""}
+    </section>
+
+    <section class="detail-block">
+      <h3>估值框架</h3>
+      <div class="profile-summary">
+        <div class="summary-row"><span>估值方法</span><strong>${v.method}</strong></div>
+        <div class="summary-row"><span>安全边际来源</span><strong>${v.safetyMarginSource}</strong></div>
+        <div class="summary-row"><span>失真变量</span><strong>${v.distortionVariable}</strong></div>
+      </div>
+    </section>
+
+    <section class="detail-block">
+      <h3>共识验证</h3>
+      ${renderConsensusBlock(stock)}
+    </section>
+  `;
+}
+
+function renderConsensusBlock(stock) {
+  const c = stock.consensus;
+  if (!c) return `<p class="muted">暂无共识数据</p>`;
+
+  const dirs = c.directions ?? {};
+  return `
+    <div class="profile-summary">
+      <div class="summary-row"><span>共识强度</span><strong>${c.confidence ?? "?"}</strong></div>
+      <div class="summary-row"><span>基本面</span><strong>${dirs.fundamental ?? "?"}</strong></div>
+      <div class="summary-row"><span>估值</span><strong>${dirs.valuation ?? "?"}</strong></div>
+      <div class="summary-row"><span>情绪</span><strong>${dirs.sentiment ?? "?"}</strong></div>
+      <div class="summary-row"><span>技术</span><strong>${dirs.technical ?? "?"}</strong></div>
+    </div>
+    ${c.note ? `<p class="muted">${c.note}</p>` : ""}
+  `;
+}
+
+function renderExecutionTab(data, stock) {
+  const e = data.execution;
+  const risks = data.risks ?? [];
+  const stopReasons = data.stopDoingReasons ?? [];
+  const t = data.tracking;
+
+  return `
+    <section class="detail-block">
+      <h3>风险与失效条件</h3>
+      ${risks.length > 0
+        ? `<ul class="technical-list">${risks.map((r) => `<li>${r.flag}</li>`).join("")}</ul>`
+        : `<p class="muted">暂无明确风险标记</p>`}
+      ${stopReasons.length > 0
+        ? `<div class="profile-summary"><div class="summary-row"><span>不为清单</span><strong style="color:var(--red)">已触发：${stopReasons.join("、")}</strong></div></div>`
+        : ""}
+    </section>
+
+    <section class="detail-block">
+      <h3>执行策略</h3>
+      <div class="profile-summary">
+        <div class="summary-row"><span>网格</span><strong>${e.grid.suitable}</strong></div>
+        <div class="summary-row"><span>做T</span><strong>${e.scalp.suitable}</strong></div>
+        <div class="summary-row"><span>趋势</span><strong>${e.trend.suitable}</strong></div>
+      </div>
+      <div class="profile-summary" style="margin-top:8px;">
+        <div class="summary-row"><span>建仓</span><strong>${e.batchEntry}</strong></div>
+        <div class="summary-row"><span>加仓</span><strong>${e.batchAdd}</strong></div>
+        <div class="summary-row"><span>减仓</span><strong>${e.batchReduce}</strong></div>
+        <div class="summary-row"><span>卖出</span><strong>${e.batchExit}</strong></div>
+      </div>
+    </section>
+
+    <section class="detail-block">
+      <h3>跟踪清单</h3>
+      <div class="profile-summary">
+        <div class="summary-row"><span>关键财报指标</span><strong>${t.keyFinancialMetrics || "待补充"}</strong></div>
+        <div class="summary-row"><span>关键事件</span><strong>${t.keyEvents || "待补充"}</strong></div>
+        <div class="summary-row"><span>关键价格区间</span><strong>${t.keyPriceZones || "待补充"}</strong></div>
+        <div class="summary-row"><span>行业变量</span><strong>${t.keyIndustryVariables || "待补充"}</strong></div>
+      </div>
+    </section>
+  `;
+}
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    // fallback for older browsers
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    return true;
+  }
+}
+
+function downloadMarkdownFile(content, fileName) {
+  const blob = new Blob([content], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${fileName}.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+async function handleExport(stock, type) {
+  const technicals = getTechnicalPayload(stock.code);
+  const { masterProfile, dailyReview, safeFileName } = (() => {
+    // inline buildExportPayload to avoid extra import complexity
+    const masterData = buildMasterProfileData(stock, technicals);
+    const dailyData = buildDailyReviewData(stock, technicals);
+    return {
+      masterProfile: renderMasterProfileMarkdown(masterData),
+      dailyReview: renderDailyReviewMarkdown(dailyData),
+      safeFileName: stock.name.replace(/[<>:"/\\|?*]/g, "_"),
+    };
+  })();
+
+  const markdown = type === "master" ? masterProfile : dailyReview;
+  const label = type === "master" ? "主档案" : "每日复盘";
+  const fileName = type === "master"
+    ? `标的主档案-${safeFileName}`
+    : `每日复盘-${safeFileName}-${new Date().toISOString().slice(0, 10)}`;
+
+  // copy to clipboard
+  const ok = await copyToClipboard(markdown);
+  if (ok) {
+    showToast(`已复制${label} Markdown 到剪贴板`);
+  } else {
+    showToast("复制失败，请检查浏览器权限");
+  }
+}
+
+async function handleDownload(stock) {
+  const technicals = getTechnicalPayload(stock.code);
+  const masterData = buildMasterProfileData(stock, technicals);
+  const markdown = renderMasterProfileMarkdown(masterData);
+  const safeFileName = stock.name.replace(/[<>:"/\\|?*]/g, "_");
+  downloadMarkdownFile(markdown, `标的主档案-${safeFileName}`);
+  showToast("已下载标的主档案 .md 文件");
+}
+
+async function handleExportToObsidian(stock) {
+  const vaultPath = state.obsidianVaultPath.trim();
+  if (!vaultPath) {
+    showToast("请先设置 Obsidian Vault 路径");
+    return;
+  }
+
+  const technicals = getTechnicalPayload(stock.code);
+  try {
+    const response = await fetch("/api/export/stock-profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ stock, technicals, vaultPath }),
+    });
+    const result = await response.json();
+    if (result.ok) {
+      showToast(`已写入 Obsidian：${result.filePath}`);
+    } else {
+      showToast(`写入失败：${result.error}`);
+    }
+  } catch (error) {
+    showToast(`写入失败：${error.message}`);
+  }
+}
+
+function showToast(message) {
+  const existing = document.querySelector(".toast");
+  if (existing) existing.remove();
+
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("toast-out");
+    setTimeout(() => toast.remove(), 300);
+  }, 2000);
 }
 
 function render() {
@@ -646,36 +1020,7 @@ function render() {
       <aside class="panel detail">
         ${
           selectedStock
-            ? `
-              <div class="detail-top">
-                <div>
-                  <div class="chip-row">
-                    <span class="badge primary">${selectedStock.conclusion}</span>
-                    <span class="chip">${selectedStock.industry}</span>
-                    <span class="chip">${selectedStock.valuationCard.status}</span>
-                  </div>
-                  <div class="detail-stock-name">${selectedStock.name}</div>
-                  <small>${selectedStock.code}.${selectedStock.market} · 单手成本 ${formatCurrency(selectedStock.lotCost)}</small>
-                </div>
-                <div class="stock-price">
-                  <div class="price-number">${selectedStock.price.toFixed(2)}</div>
-                  <div class="price-change ${selectedStock.valuationCard.marginOfSafety >= 0 ? "up" : "down"}">安全边际 ${formatPercent(selectedStock.valuationCard.marginOfSafety)}</div>
-                </div>
-              </div>
-
-              <div class="detail-scores">
-                <div class="detail-score"><span class="mini-label">总分</span><strong>${selectedStock.scores.total}</strong></div>
-                <div class="detail-score"><span class="mini-label">价值分</span><strong>${selectedStock.scores.core}</strong></div>
-                <div class="detail-score"><span class="mini-label">主题分</span><strong>${selectedStock.scores.auxiliary}</strong></div>
-                <div class="detail-score"><span class="mini-label">资金适配</span><strong>${selectedStock.scores.capitalFit}</strong></div>
-              </div>
-
-              <div class="detail-grid">
-                ${renderResearchReport(selectedStock)}
-                ${renderValuationReport(selectedStock)}
-                ${renderTechnicalBlock(selectedStock)}
-              </div>
-            `
+            ? renderDetailPanel(selectedStock)
             : `<div class="summary-card"><p class="stock-summary">当前没有可展示的个股详情。</p></div>`
         }
       </aside>
@@ -747,6 +1092,49 @@ function attachEvents() {
       state.settings.selectedIndustry = node.dataset.industry;
       persistAndRender();
     });
+  });
+
+  // ── 详情面板 tab 切换 ──
+  document.querySelectorAll(".detail-tab").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.detailTab = btn.dataset.tab;
+      render();
+    });
+  });
+
+  // ── 导出按钮 ──
+  document.getElementById("copyMasterBtn")?.addEventListener("click", () => {
+    const model = getModel();
+    const stock = getSelectedStock(model);
+    if (stock) handleExport(stock, "master");
+  });
+
+  document.getElementById("copyDailyBtn")?.addEventListener("click", () => {
+    const model = getModel();
+    const stock = getSelectedStock(model);
+    if (stock) handleExport(stock, "daily");
+  });
+
+  document.getElementById("downloadMasterBtn")?.addEventListener("click", () => {
+    const model = getModel();
+    const stock = getSelectedStock(model);
+    if (stock) handleDownload(stock);
+  });
+
+  document.getElementById("exportObsidianBtn")?.addEventListener("click", () => {
+    const model = getModel();
+    const stock = getSelectedStock(model);
+    if (stock) handleExportToObsidian(stock);
+  });
+
+  // ── Vault 路径设置 ──
+  document.getElementById("saveVaultPathBtn")?.addEventListener("click", () => {
+    const input = document.getElementById("vaultPathInput");
+    if (input) {
+      state.obsidianVaultPath = input.value.trim();
+      persistAndRender();
+      showToast("Obsidian Vault 路径已保存");
+    }
   });
 }
 

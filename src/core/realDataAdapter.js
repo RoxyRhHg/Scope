@@ -42,12 +42,30 @@ function scoreProfitability(pe, pb, marketCap) {
   return clamp(score, 35, 88);
 }
 
-function scoreBusinessQuality(marketCap, pe) {
+function scoreBusinessModelQuality(marketCap, pe, grossMargin) {
   let score = 62;
+  // 市值：大市值通常意味着行业地位稳固
   if (marketCap > 1e11) score += 10;
   if (marketCap > 5e11) score += 8;
+  // PE 合理：估值合理的公司通常有更可靠的商业模式
   if (pe > 0 && pe < 28) score += 6;
-  return clamp(score, 36, 90);
+  // 毛利率：高毛利率通常代表定价权和护城河
+  if (grossMargin > 0.4) score += 8;
+  if (grossMargin > 0.6) score += 6;
+  return clamp(score, 32, 92);
+}
+
+function scoreManagementQuality(marketCap, dividendYield, pe) {
+  let score = 60;
+  // 大市值公司通常治理更规范
+  if (marketCap > 5e10) score += 8;
+  if (marketCap > 2e11) score += 6;
+  // 有分红且合理表示对股东友好
+  if (dividendYield > 1.5 && dividendYield < 8) score += 8;
+  if (dividendYield > 2.5 && dividendYield < 6) score += 6;
+  // 估值合理表示管理层没有过度炒作
+  if (pe > 0 && pe < 35) score += 6;
+  return clamp(score, 30, 88);
 }
 
 function scoreBalanceSheet(pb, turnover) {
@@ -193,7 +211,9 @@ export function normalizeSpotRow(row, industryLookup, conceptLookup, industryRan
     riskNote: "当前真实数据版仍以快照和轻量财务代理评分为主，后续可接入更完整财务字段。",
     riskFlags: [],
     metrics: {
-      businessQuality: scoreBusinessQuality(marketCap, pe),
+      businessModelQuality: scoreBusinessModelQuality(marketCap, pe, number(row.毛利率 ?? row.gross_margin, 0.35)),
+      managementQuality: scoreManagementQuality(marketCap, number(row.股息率 ?? row.dividend_yield, 0), pe),
+      businessQuality: scoreBusinessModelQuality(marketCap, pe, number(row.毛利率 ?? row.gross_margin, 0.35)),
       profitability: profitabilityScore,
       cashFlow: cashFlowScore,
       balanceSheet: scoreBalanceSheet(pb, turnover),

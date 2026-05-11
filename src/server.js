@@ -8,6 +8,7 @@ import { promisify } from "node:util";
 import { buildRealSnapshot } from "./core/realDataAdapter.js";
 import { createSampleSnapshot } from "./core/sampleData.js";
 import { buildTechnicalNarrative, computeTechnicalSnapshot } from "./core/technicalIndicators.js";
+import { buildExportPayload } from "./core/obsidianAdapter.js";
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -204,6 +205,29 @@ async function fetchTechnicalPayload(code, force = false) {
   }
 }
 
+function parseJsonBody(request) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    request.on("data", (chunk) => chunks.push(chunk));
+    request.on("end", () => {
+      try {
+        resolve(JSON.parse(Buffer.concat(chunks).toString("utf8")));
+      } catch (error) {
+        reject(error);
+      }
+    });
+    request.on("error", reject);
+  });
+}
+
+function writeExportFile(vaultPath, fileName, content) {
+  const dir = path.resolve(vaultPath);
+  fs.mkdirSync(dir, { recursive: true });
+  const filePath = path.join(dir, `${fileName}.md`);
+  fs.writeFileSync(filePath, content, "utf8");
+  return filePath;
+}
+
 const server = http.createServer((request, response) => {
   const parsedRequest = new URL(request.url ?? "/", "http://127.0.0.1");
 
@@ -248,6 +272,52 @@ const server = http.createServer((request, response) => {
     fetchTechnicalPayload(code, force)
       .then((payload) => sendJson(response, 200, payload))
       .catch((error) => sendJson(response, 500, { error: error.message }));
+    return;
+  }
+
+  if (parsedRequest.pathname === "/api/export/stock-profile" && request.method === "POST") {
+    parseJsonBody(request)
+      .then((body) => {
+        const { stock, technicals, vaultPath, wikiStockPath } = body;
+        if (!stock) {
+          sendJson(response, 400, { error: "stock data is required" });
+          return;
+        }
+
+        const payload = buildExportPayload(stock, technicals ?? null, { wikiStockPath });
+        const markdown = payload.masterProfile;
+
+        if (vaultPath) {
+          const filePath = writeExportFile(vaultPath, `标的主档案-${payload.safeFileName}`, markdown);
+          sendJson(response, 200, { ok: true, filePath, fileName: payload.fileName });
+        } else {
+          sendJson(response, 200, { ok: true, markdown, fileName: payload.fileName });
+        }
+      })
+      .catch((error) => sendJson(response, 400, { error: error.message }));
+    return;
+  }
+
+  if (parsedRequest.pathname === "/api/export/daily-review" && request.method === "POST") {
+    parseJsonBody(request)
+      .then((body) => {
+        const { stock, technicals, vaultPath, wikiStockPath } = body;
+        if (!stock) {
+          sendJson(response, 400, { error: "stock data is required" });
+          return;
+        }
+
+        const payload = buildExportPayload(stock, technicals ?? null, { wikiStockPath });
+        const markdown = payload.dailyReview;
+
+        if (vaultPath) {
+          const filePath = writeExportFile(vaultPath, `每日复盘-${payload.safeFileName}-${new Date().toISOString().slice(0, 10)}`, markdown);
+          sendJson(response, 200, { ok: true, filePath, fileName: payload.fileName });
+        } else {
+          sendJson(response, 200, { ok: true, markdown, fileName: payload.fileName });
+        }
+      })
+      .catch((error) => sendJson(response, 400, { error: error.message }));
     return;
   }
 

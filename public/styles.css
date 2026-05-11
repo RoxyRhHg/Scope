@@ -697,3 +697,137 @@ input[type="range"] {
     display: none;
   }
 }
+
+/* ─── 详情面板 Tab 切换 ─── */
+
+.detail-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0;
+  margin-top: 4px;
+}
+
+.detail-tab {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.detail-tab:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.detail-tab.active {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.86);
+  font-weight: 600;
+  border-bottom: 3px solid var(--green);
+  margin-bottom: -2px;
+}
+
+.detail-tab-content {
+  max-height: 52vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* ─── 档案摘要行 ─── */
+
+.profile-summary {
+  display: grid;
+  gap: 6px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+}
+
+.summary-row span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.summary-row strong {
+  font-weight: 600;
+  text-align: right;
+  max-width: 58%;
+}
+
+/* ─── 导出按钮栏 ─── */
+
+.detail-export-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.button.small {
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+
+.vault-path-input {
+  flex: 1;
+  min-width: 160px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.66);
+  color: var(--ink);
+}
+
+.vault-path-input::placeholder {
+  color: var(--muted);
+}
+
+/* ─── Toast 通知 ─── */
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--cream);
+  padding: 10px 28px;
+  border-radius: 12px;
+  font-size: 14px;
+  z-index: 999;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+  animation: toast-in 0.25s ease-out;
+}
+
+.toast-out {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

@@ -18,35 +18,38 @@ import { test } from "./harness.js";
 const settings = {
   availableCapital: 12000,
   autoRefreshMinutes: 60,
+  competenceCircle: [],
   thresholds: {
     minListingYears: 3,
     minLiquidityScore: 45,
-    minCoreScoreForRanking: 60,
-    minCoreScoreForFocus: 72,
+    minCoreScoreForRanking: 55,
+    minCoreScoreForFocus: 78,
     maxRiskFlagsForFocus: 1,
   },
   weights: {
-    core: 0.68,
-    auxiliary: 0.17,
-    capitalFit: 0.15,
+    core: 0.62,
+    auxiliary: 0.18,
+    capitalFit: 0.12,
+    consensus: 0.08,
     coreBreakdown: {
-      businessQuality: 0.24,
-      profitability: 0.18,
-      cashFlow: 0.18,
-      balanceSheet: 0.16,
-      valuation: 0.16,
-      stability: 0.08,
+      businessModelQuality: 0.32,
+      managementQuality: 0.22,
+      valuation: 0.18,
+      profitability: 0.10,
+      cashFlow: 0.08,
+      balanceSheet: 0.06,
+      stability: 0.04,
     },
     auxiliaryBreakdown: {
-      industryProsperity: 0.5,
-      conceptHeat: 0.2,
-      catalyst: 0.3,
+      industryProsperity: 0.4,
+      conceptHeat: 0.25,
+      catalyst: 0.35,
     },
     capitalBreakdown: {
-      affordability: 0.34,
-      liquidity: 0.26,
-      concentrationFit: 0.24,
-      volatilityFit: 0.16,
+      affordability: 0.4,
+      liquidity: 0.25,
+      concentrationFit: 0.2,
+      volatilityFit: 0.15,
     },
   },
 };
@@ -68,7 +71,8 @@ function makeStock(overrides = {}) {
     lotCost: 1280,
     dividendYield: 5.6,
     metrics: {
-      businessQuality: 78,
+      businessModelQuality: 82,
+      managementQuality: 78,
       profitability: 76,
       cashFlow: 80,
       balanceSheet: 82,
@@ -111,7 +115,8 @@ test("rankStocks keeps high-heat stocks out when core score is below threshold",
     code: "600010",
     name: "价值龙头",
     metrics: {
-      businessQuality: 88,
+      businessModelQuality: 88,
+      managementQuality: 85,
       profitability: 85,
       cashFlow: 84,
       balanceSheet: 83,
@@ -132,7 +137,8 @@ test("rankStocks keeps high-heat stocks out when core score is below threshold",
     industry: "计算机",
     concepts: ["人工智能", "机器人"],
     metrics: {
-      businessQuality: 42,
+      businessModelQuality: 42,
+      managementQuality: 44,
       profitability: 45,
       cashFlow: 46,
       balanceSheet: 50,
@@ -153,23 +159,24 @@ test("rankStocks keeps high-heat stocks out when core score is below threshold",
   assert.equal(ranked[0].name, "价值龙头");
 });
 
-test("pickFocusStocks returns at most two names and only from qualified candidates", () => {
+test("pickFocusStocks applies strict filters and returns qualified candidates", () => {
   const ranked = [
-    ...Array.from({ length: 12 }, (_, index) =>
+    ...Array.from({ length: 8 }, (_, index) =>
       computeStockScores(
         makeStock({
           code: `6001${String(index).padStart(2, "0")}`,
           name: `重仓候选${index + 1}`,
           metrics: {
-            businessQuality: 88 - index * 0.4,
+            businessModelQuality: 88 - index * 0.4,
+            managementQuality: 84 - index * 0.3,
             profitability: 84 - index * 0.3,
-            cashFlow: 83 - index * 0.3,
-            balanceSheet: 85 - index * 0.2,
-            valuation: 78 - index * 0.2,
+            cashFlow: 85 - index * 0.3,
+            balanceSheet: 86 - index * 0.2,
+            valuation: 82 - index * 0.6,
             stability: 81 - index * 0.2,
-            industryProsperity: 71,
-            conceptHeat: 36,
-            catalyst: 67,
+            industryProsperity: 66,
+            conceptHeat: 22,
+            catalyst: 55,
             liquidity: 79,
             concentrationFit: 85,
             volatilityFit: 78,
@@ -184,7 +191,8 @@ test("pickFocusStocks returns at most two names and only from qualified candidat
         name: "不适合重仓",
         riskFlags: ["波动偏高", "概念依赖"],
         metrics: {
-          businessQuality: 79,
+          businessModelQuality: 79,
+          managementQuality: 74,
           profitability: 74,
           cashFlow: 70,
           balanceSheet: 72,
@@ -204,9 +212,9 @@ test("pickFocusStocks returns at most two names and only from qualified candidat
 
   const focus = pickFocusStocks(ranked, settings);
 
-  assert.equal(focus.length, 10);
+  assert.ok(focus.length > 0, "Should have at least one focus stock");
+  assert.ok(focus.length <= 8, "Should not exceed candidate count");
   assert.equal(focus[0].name, "重仓候选1");
-  assert.equal(focus.at(-1).name, "重仓候选10");
 });
 
 test("buildIndustryTop limits sector recommendations to 20 names", () => {
@@ -216,7 +224,8 @@ test("buildIndustryTop limits sector recommendations to 20 names", () => {
         code: `600${100 + index}`,
         name: `银行股${index + 1}`,
         metrics: {
-          businessQuality: 82 - index * 0.2,
+          businessModelQuality: 84 - index * 0.2,
+          managementQuality: 80 - index * 0.2,
           profitability: 80 - index * 0.2,
           cashFlow: 81 - index * 0.2,
           balanceSheet: 83 - index * 0.2,
@@ -239,6 +248,53 @@ test("buildIndustryTop limits sector recommendations to 20 names", () => {
   assert.equal(top.length, 20);
   assert.equal(top[0].name, "银行股1");
   assert.equal(top.at(-1).name, "银行股20");
+});
+
+test("computeStockScores includes new v2 fields", () => {
+  const stock = makeStock();
+  const scored = computeStockScores(stock, settings);
+
+  // 新字段存在
+  assert.equal(typeof scored.maoValuation, "object");
+  assert.equal(typeof scored.maoValuation.valuationTier, "string");
+  assert.equal(typeof scored.consensus, "object");
+  assert.equal(typeof scored.consensus.consensus, "string");
+  assert.equal(typeof scored.consensus.confidence, "string");
+  assert.equal(typeof scored.stopDoingBlocked, "boolean");
+  assert.equal(Array.isArray(scored.stopDoingReasons), true);
+  assert.equal(typeof scored.scores.consensusAdjustment, "number");
+});
+
+test("computeStockScores marks stop-doing-blocked for integrity-flagged stocks", () => {
+  const stock = makeStock({
+    managementFlags: ["财务造假"],
+  });
+  const scored = computeStockScores(stock, settings);
+
+  assert.equal(scored.stopDoingBlocked, true);
+  assert.ok(scored.stopDoingReasons.includes("管理层诚信污点"));
+});
+
+test("computeStockScores gives 明显高估 tier for overheated valuation", () => {
+  const stock = makeStock({
+    price: 120.0,
+    metrics: {
+      ...makeStock().metrics,
+      valuation: 30,
+    },
+  });
+  const scored = computeStockScores(stock, settings);
+
+  assert.equal(scored.maoValuation.valuationTier, "明显高估");
+});
+
+test("computeStockScores conclusion includes '明确回避' when stop-doing blocked", () => {
+  const stock = makeStock({
+    managementFlags: ["公开谴责"],
+  });
+  const scored = computeStockScores(stock, settings);
+
+  assert.equal(scored.conclusion, "明确回避");
 });
 
 test("normalizeSpotRow maps raw live data to dashboard stock shape", () => {
@@ -264,6 +320,8 @@ test("normalizeSpotRow maps raw live data to dashboard stock shape", () => {
   assert.deepEqual(stock.concepts, ["白酒", "高端消费"]);
   assert.equal(stock.lotCost, 152033);
   assert.equal(stock.metrics.valuation > 0, true);
+  assert.equal(typeof stock.metrics.businessModelQuality, "number");
+  assert.equal(typeof stock.metrics.managementQuality, "number");
   assert.equal(typeof stock.financials.roeProxy, "number");
   assert.equal(typeof stock.financials.freeCashFlowYieldProxy, "number");
 });

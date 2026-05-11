@@ -385,6 +385,16 @@ function buildStock(profile, industryIndex, name, nameIndex, iteration) {
     metrics[key] = Math.round(clamp(value + drift + personality, 28, 94));
   }
 
+  // 派生新增维度（philosophy v2 兼容）
+  metrics.businessModelQuality = metrics.businessModelQuality ?? metrics.businessQuality;
+  metrics.managementQuality =
+    metrics.managementQuality ??
+    Math.round(clamp(
+      (metrics.businessQuality ?? 70) * 0.6 + (metrics.stability ?? 70) * 0.3 + (metrics.profitability ?? 70) * 0.1,
+      30,
+      90,
+    ));
+
   const market = nameIndex % 2 === 0 ? "SH" : "SZ";
   const codeBase = market === "SH" ? 600000 : 300000;
   const code = String(codeBase + industryIndex * 100 + nameIndex + 10);
