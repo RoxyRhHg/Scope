@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
+    "prefetch": "python scripts/prefetch.py --techs",
+    "prefetch-all": "python scripts/prefetch.py --all-techs",
     "test": "node tests/run-tests.js",
     "tauri:dev": "set PATH=%USERPROFILE%\\.cargo\\bin;%PATH%&& tauri dev",
     "tauri:build": "set PATH=%USERPROFILE%\\.cargo\\bin;%PATH%&& tauri build"

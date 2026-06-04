@@ -1,5 +1,6 @@
 import {
   applyRiskFilters,
+  buildConceptTop,
   buildIndustryTop,
   pickFocusStocks,
   rankStocks,
@@ -58,6 +59,12 @@ export function getAvailableConcepts(stocks) {
     }
   }
 
+  // 确保核心概念始终在列表中
+  const coreConcepts = ["AI", "半导体", "光通信", "芯片", "数据", "算力", "存储", "能源", "银行", "具身智能", "ARVR"];
+  for (const c of coreConcepts) {
+    concepts.add(c);
+  }
+
   return ["全部概念", ...Array.from(concepts).sort((left, right) => left.localeCompare(right, "zh-CN"))];
 }
 
@@ -109,6 +116,7 @@ export function buildDashboardModel(snapshot, settings) {
       ? normalizedSettings.selectedIndustry
       : industries[0]?.industry ?? "全部行业";
   const sectorTop = buildIndustryTop(rankedAll, selectedIndustry, 20);
+  const conceptTop = buildConceptTop(rankedAll, normalizedSettings.selectedConcept, 10);
   const focus = pickFocusStocks(rankedAll, settings);
 
   return {
@@ -119,7 +127,9 @@ export function buildDashboardModel(snapshot, settings) {
     industries,
     focus,
     sectorTop,
+    conceptTop,
     selectedIndustry,
+    selectedConcept: normalizedSettings.selectedConcept,
     availableConcepts,
     normalizedSettings,
     eligibleCount: filteredByRisk.eligible.length,

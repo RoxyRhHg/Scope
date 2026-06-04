@@ -1,0 +1,6 @@
+[warn] page 1/70 failed: 456 Client Error:  for url: https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData?page=1&num=80&sort=symbol&asc=1&node=hs_a&symbol=&_s_r_a=page
+[warn] page 2/70 failed: 456 Client Error:  for url: https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData?page=2&num=80&sort=symbol&asc=1&node=hs_a&symbol=&_s_r_a=page
+[warn] page 3/70 failed: 456 Client Error:  for url: https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeData?page=3&num=80&sort=symbol&asc=1&node=hs_a&symbol=&_s_r_a=page
+[warn] too many failures, stopping at 0 rows
+[warn] concept fetch skipped: 456 Client Error:  for url: https://vip.stock.finance.sina.com.cn/q/view/newFLJK.php?param=class
+[ok] cached 0 stocks to .cache\prefetch-snapshot.json

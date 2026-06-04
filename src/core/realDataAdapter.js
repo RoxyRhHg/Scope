@@ -1,3 +1,5 @@
+import { assignConcepts } from "./conceptAdapter.js";
+
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
@@ -175,7 +177,7 @@ function buildIndustryRankLookup(industries) {
   return { lookup, total: sorted.length || 1 };
 }
 
-export function normalizeSpotRow(row, industryLookup, conceptLookup, industryRankInfo = { lookup: new Map(), total: 1 }) {
+export function normalizeSpotRow(row, industryLookup, industryRankInfo = { lookup: new Map(), total: 1 }) {
   const code = String(row.代码 ?? row.code ?? "");
   const name = row.名称 ?? row.name ?? code;
   const price = number(row.最新价 ?? row.price ?? row.trade, 0);
@@ -187,7 +189,7 @@ export function normalizeSpotRow(row, industryLookup, conceptLookup, industryRan
   const pb = number(row.市净率 ?? row.pb, 0);
   const ytdChange = number(row.年初至今涨跌幅 ?? row.ytd_change, 0);
   const industry = industryLookup.get(code) ?? "未分类";
-  const concepts = conceptLookup.get(code) ?? [];
+  const concepts = assignConcepts({ code, name, industry });
   const industryRank = industryRankInfo.lookup.get(industry) ?? 0;
   const profitabilityScore = scoreProfitability(pe, pb, marketCap);
   const cashFlowScore = scoreCashFlow(pe, turnover);
@@ -243,10 +245,9 @@ export function normalizeSpotRow(row, industryLookup, conceptLookup, industryRan
 
 export function buildRealSnapshot(raw) {
   const industryLookup = buildIndustryLookup(raw.industries ?? []);
-  const conceptLookup = normalizeConceptLookup(raw.concepts ?? [], 3);
   const industryRankInfo = buildIndustryRankLookup(raw.industries ?? []);
   const items = (raw.spot ?? []).map((row) =>
-    normalizeSpotRow(row, industryLookup, conceptLookup, industryRankInfo),
+    normalizeSpotRow(row, industryLookup, industryRankInfo),
   );
 
   return {

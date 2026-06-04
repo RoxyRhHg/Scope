@@ -831,3 +831,275 @@ input[type="range"] {
     transform: translateX(-50%) translateY(0);
   }
 }
+
+/* ─── 搜索框 ─── */
+
+#searchInput {
+  width: 100%;
+}
+
+/* ─── 自选股 ─── */
+
+.watchlist-group {
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.watchlist-group-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.watchlist-group-name {
+  font-weight: 600;
+  font-size: 13px;
+  flex: 1;
+}
+
+.watchlist-count {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.watchlist-stock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  border-top: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.watchlist-stock:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.watchlist-stock small {
+  color: var(--muted);
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.button-icon {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.15s;
+}
+
+.button-icon:hover {
+  background: rgba(255, 0, 0, 0.1);
+  color: var(--red);
+}
+
+.delete-group-btn:hover {
+  background: rgba(255, 0, 0, 0.15);
+}
+
+/* ─── ETF ─── */
+
+.etf-type-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip.active {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* ── Focus 10 Controls ── */
+
+.focus-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-view-toggle {
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--muted);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.btn-view-toggle:hover {
+  border-color: var(--green);
+  color: var(--ink);
+}
+
+.btn-view-toggle.active {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* ── Focus Table ── */
+
+.focus-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.focus-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.focus-table th {
+  background: var(--paper-strong);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.focus-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(23, 35, 31, 0.05);
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.focus-row {
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.focus-row:hover {
+  background: rgba(18, 59, 44, 0.04);
+}
+
+.focus-row:last-child td {
+  border-bottom: none;
+}
+
+.focus-name {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.focus-code-inline {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.focus-price {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.focus-buyzone {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.focus-intrinsic {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.focus-margin {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.margin-high {
+  color: var(--green);
+}
+
+.margin-ok {
+  color: var(--gold);
+}
+
+.focus-upside {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--green);
+}
+
+.upside-high {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.focus-brief {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sell-zone {
+  background: rgba(187, 139, 43, 0.06);
+}
+
+.sell-zone-card {
+  border-color: var(--gold);
+}
+
+/* ── Focus Card Detail ── */
+
+.focus-detail-card {
+  min-width: 280px;
+}
+
+.focus-card-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin: 8px 0;
+}
+
+.focus-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.focus-card-label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.focus-card-value {
+  font-weight: 600;
+  font-size: 15px;
+}

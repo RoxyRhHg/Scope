@@ -1,0 +1,4980 @@
+{
+  "ok": true,
+  "date": "2026-06-03",
+  "snapshotSource": "live",
+  "snapshotCached": true,
+  "snapshotCount": 5523,
+  "hasHistory": true,
+  "historyDate": "2026-06-04",
+  "filters": {
+    "maxPrice": 70,
+    "minScore": 20,
+    "limit": 100,
+    "priorityOnly": false
+  },
+  "summary": {
+    "totalPredictions": 122,
+    "stockCount": 100,
+    "etfCount": 22,
+    "strongBuy": 0,
+    "watch": 40,
+    "valueBase": 0
+  },
+  "stocks": [
+    {
+      "code": "603859",
+      "name": "能科科技",
+      "price": 42.6,
+      "totalScore": 67.55,
+      "probability": "高",
+      "action": "纳入观察",
+      "dimensions": {
+        "technicals": 76,
+        "limitupGene": 45,
+        "momentum": 80,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "MACD多头",
+        "年内5次大涨/2涨停",
+        "近期有大涨",
+        "5日温和上涨",
+        "20日趋势向上",
+        "上涨放量",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 5,
+      "scope": {
+        "coreScore": 59.36,
+        "totalScore": 57.79,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 34,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -25,
+        "intrinsicValue": 34.08,
+        "conservativeValue": 29.99,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 25.49,
+        "stopLossPrice": 39.19,
+        "targetPrice": 32.99,
+        "priceVsIdeal": 67.12
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002552",
+      "name": "宝鼎科技",
+      "price": 59.47,
+      "totalScore": 60.6,
+      "probability": "中等",
+      "action": "纳入观察",
+      "dimensions": {
+        "technicals": 75,
+        "limitupGene": 24,
+        "momentum": 73,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "MACD多头",
+        "均线多头排列",
+        "年内3次大涨",
+        "涨停基因活跃",
+        "5日快速上涨(注意追高)",
+        "上涨放量",
+        "换手率活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 3,
+      "scope": {
+        "coreScore": 57.68,
+        "totalScore": 56.7,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.2,
+        "intrinsicValue": 46.39,
+        "conservativeValue": 40.82,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 34.7,
+        "stopLossPrice": 54.71,
+        "targetPrice": 44.9,
+        "priceVsIdeal": 71.38
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002415",
+      "name": "海康威视",
+      "price": 30.77,
+      "totalScore": 60.35,
+      "probability": "中等",
+      "action": "纳入观察",
+      "dimensions": {
+        "technicals": 47,
+        "limitupGene": 71,
+        "momentum": 55,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "KDJ超卖",
+        "年内12次大涨/6涨停",
+        "6次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "缩量回调(良性)",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 12,
+      "scope": {
+        "coreScore": 74.02,
+        "totalScore": 70.29,
+        "businessModel": 78,
+        "management": 80,
+        "valuation": 53,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 3.6,
+        "intrinsicValue": 31.92,
+        "conservativeValue": 28.09,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 23.88,
+        "stopLossPrice": 28.31,
+        "targetPrice": 30.9,
+        "priceVsIdeal": 28.85
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "002208",
+      "name": "合肥城建",
+      "price": 16.87,
+      "totalScore": 59.4,
+      "probability": "中等",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 83,
+        "limitupGene": 38,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "MACD多头",
+        "KDJ超买",
+        "均线多头排列",
+        "年内19次大涨/17涨停(高频)",
+        "17次涨停(强基因)",
+        "5日暴涨(回调风险)",
+        "上涨放量",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 19,
+      "scope": {
+        "coreScore": 65.68,
+        "totalScore": 60.6,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 69,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 19.2,
+        "intrinsicValue": 20.88,
+        "conservativeValue": 18.37,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 15.61,
+        "stopLossPrice": 15.52,
+        "targetPrice": 20.21,
+        "priceVsIdeal": 8.07
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号+有安全边际"
+    },
+    {
+      "code": "601133",
+      "name": "柏诚股份",
+      "price": 27.46,
+      "totalScore": 58.9,
+      "probability": "中等",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 83,
+        "limitupGene": 20,
+        "momentum": 70,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "MACD多头",
+        "KDJ超买",
+        "均线多头排列",
+        "年内2次大涨",
+        "涨停基因活跃",
+        "5日温和上涨",
+        "20日趋势向上",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 2,
+      "scope": {
+        "coreScore": 57.52,
+        "totalScore": 54.17,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.2,
+        "intrinsicValue": 21.42,
+        "conservativeValue": 18.85,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 16.02,
+        "stopLossPrice": 25.26,
+        "targetPrice": 20.74,
+        "priceVsIdeal": 71.41
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600703",
+      "name": "三安光电",
+      "price": 15.51,
+      "totalScore": 56.5,
+      "probability": "中等",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 80,
+        "limitupGene": 10,
+        "momentum": 60,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "MACD多头",
+        "均线多头排列",
+        "年内1次大涨",
+        "上涨放量",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "scope": {
+        "coreScore": 67.92,
+        "totalScore": 67.15,
+        "businessModel": 62,
+        "management": 68,
+        "valuation": 69,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 19.18,
+        "intrinsicValue": 19.19,
+        "conservativeValue": 16.89,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 14.36,
+        "stopLossPrice": 14.27,
+        "targetPrice": 18.58,
+        "priceVsIdeal": 8.01
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号+有安全边际"
+    },
+    {
+      "code": "601991",
+      "name": "大唐发电",
+      "price": 9.1,
+      "totalScore": 54.5,
+      "probability": "中等",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 83,
+        "limitupGene": 0,
+        "momentum": 58,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "MACD多头",
+        "KDJ超买",
+        "均线多头排列",
+        "无历史数据",
+        "5日暴涨(回调风险)",
+        "上涨放量",
+        "换手率活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 0,
+      "scope": {
+        "coreScore": 65.76,
+        "totalScore": 61.25,
+        "businessModel": 72,
+        "management": 74,
+        "valuation": 34,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -25,
+        "intrinsicValue": 7.28,
+        "conservativeValue": 6.41,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 5.45,
+        "stopLossPrice": 8.37,
+        "targetPrice": 7.05,
+        "priceVsIdeal": 66.97
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "002236",
+      "name": "大华股份",
+      "price": 17,
+      "totalScore": 49.2,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 39,
+        "limitupGene": 38,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "KDJ超卖",
+        "年内16次大涨/13涨停(高频)",
+        "13次涨停(强基因)",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 16,
+      "scope": {
+        "coreScore": 74.08,
+        "totalScore": 69.96,
+        "businessModel": 68,
+        "management": 74,
+        "valuation": 71,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 20.78,
+        "intrinsicValue": 21.46,
+        "conservativeValue": 18.88,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 16.05,
+        "stopLossPrice": 15.64,
+        "targetPrice": 20.77,
+        "priceVsIdeal": 5.92
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号+有安全边际"
+    },
+    {
+      "code": "600167",
+      "name": "联美控股",
+      "price": 6.82,
+      "totalScore": 45.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内25次大涨/23涨停(高频)",
+        "23次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 25,
+      "scope": {
+        "coreScore": 69.4,
+        "totalScore": 62.38,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 63,
+        "conclusion": "值得观察",
+        "valuationTier": "合理",
+        "safetyMargin": 14,
+        "intrinsicValue": 7.93,
+        "conservativeValue": 6.98,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 5.93,
+        "stopLossPrice": 6.27,
+        "targetPrice": 7.68,
+        "priceVsIdeal": 15.01
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号+有安全边际"
+    },
+    {
+      "code": "600537",
+      "name": "*ST亿晶",
+      "price": 2.87,
+      "totalScore": 45.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内25次大涨/25涨停(高频)",
+        "25次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 25,
+      "scope": {
+        "coreScore": 65.96,
+        "totalScore": 60.28,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 72,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 21.58,
+        "intrinsicValue": 3.66,
+        "conservativeValue": 3.22,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 2.74,
+        "stopLossPrice": 2.64,
+        "targetPrice": 3.54,
+        "priceVsIdeal": 4.74
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号+有安全边际"
+    },
+    {
+      "code": "000503",
+      "name": "国新健康",
+      "price": 7.03,
+      "totalScore": 45.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内13次大涨/12涨停",
+        "12次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 13,
+      "scope": {
+        "coreScore": 61.88,
+        "totalScore": 57.67,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.63,
+        "intrinsicValue": 6.85,
+        "conservativeValue": 6.03,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 5.13,
+        "stopLossPrice": 6.47,
+        "targetPrice": 6.63,
+        "priceVsIdeal": 37.04
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002077",
+      "name": "大港股份",
+      "price": 17.06,
+      "totalScore": 45.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内14次大涨/13涨停",
+        "13次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 14,
+      "scope": {
+        "coreScore": 59.7,
+        "totalScore": 60.63,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 37,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -19.38,
+        "intrinsicValue": 14.29,
+        "conservativeValue": 12.58,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 10.69,
+        "stopLossPrice": 15.7,
+        "targetPrice": 13.84,
+        "priceVsIdeal": 59.59
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002913",
+      "name": "奥士康",
+      "price": 54.06,
+      "totalScore": 45.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "年内9次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 9,
+      "scope": {
+        "coreScore": 58.74,
+        "totalScore": 57.1,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 31,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.2,
+        "intrinsicValue": 42.17,
+        "conservativeValue": 37.11,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 31.54,
+        "stopLossPrice": 49.74,
+        "targetPrice": 40.82,
+        "priceVsIdeal": 71.4
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600157",
+      "name": "永泰能源",
+      "price": 1.85,
+      "totalScore": 44.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内13次大涨/11涨停",
+        "11次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 13,
+      "scope": {
+        "coreScore": 63.1,
+        "totalScore": 58.33,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 50,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 0,
+        "intrinsicValue": 1.85,
+        "conservativeValue": 1.63,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 1.39,
+        "stopLossPrice": 1.7,
+        "targetPrice": 1.79,
+        "priceVsIdeal": 33.09
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603659",
+      "name": "璞泰来",
+      "price": 29.96,
+      "totalScore": 44.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内9次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 9,
+      "scope": {
+        "coreScore": 67.04,
+        "totalScore": 65.31,
+        "businessModel": 68,
+        "management": 74,
+        "valuation": 46,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -5.27,
+        "intrinsicValue": 28.46,
+        "conservativeValue": 25.04,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 21.28,
+        "stopLossPrice": 27.56,
+        "targetPrice": 27.54,
+        "priceVsIdeal": 40.79
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600929",
+      "name": "雪天盐业",
+      "price": 5.37,
+      "totalScore": 44,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 76,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内11次大涨/10涨停",
+        "10次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 11,
+      "scope": {
+        "coreScore": 62.94,
+        "totalScore": 56.95,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.48,
+        "intrinsicValue": 5.24,
+        "conservativeValue": 4.61,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 3.92,
+        "stopLossPrice": 4.94,
+        "targetPrice": 5.07,
+        "priceVsIdeal": 36.99
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002198",
+      "name": "ST嘉应",
+      "price": 4.06,
+      "totalScore": 44,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 76,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内17次大涨/17涨停(高频)",
+        "17次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 17,
+      "scope": {
+        "coreScore": 59.9,
+        "totalScore": 55.3,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 37,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -19.41,
+        "intrinsicValue": 3.4,
+        "conservativeValue": 2.99,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 2.54,
+        "stopLossPrice": 3.74,
+        "targetPrice": 3.29,
+        "priceVsIdeal": 59.84
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002268",
+      "name": "电科网安",
+      "price": 13.96,
+      "totalScore": 44,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 64,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内20次大涨/18涨停(高频)",
+        "18次涨停(强基因)",
+        "近30天多次大涨",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 20,
+      "scope": {
+        "coreScore": 61.38,
+        "totalScore": 61.08,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 42,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -11.15,
+        "intrinsicValue": 12.56,
+        "conservativeValue": 11.05,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 9.39,
+        "stopLossPrice": 12.84,
+        "targetPrice": 12.16,
+        "priceVsIdeal": 48.67
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600237",
+      "name": "铜峰电子",
+      "price": 11.11,
+      "totalScore": 43.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内22次大涨/17涨停(高频)",
+        "17次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 22,
+      "scope": {
+        "coreScore": 58.58,
+        "totalScore": 59.03,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 33,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -26.97,
+        "intrinsicValue": 8.75,
+        "conservativeValue": 7.7,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 6.55,
+        "stopLossPrice": 10.22,
+        "targetPrice": 8.47,
+        "priceVsIdeal": 69.62
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600396",
+      "name": "华电辽能",
+      "price": 21.34,
+      "totalScore": 43.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内23次大涨/21涨停(高频)",
+        "21次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 23,
+      "scope": {
+        "coreScore": 57,
+        "totalScore": 58.12,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.17,
+        "intrinsicValue": 16.65,
+        "conservativeValue": 14.65,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 12.45,
+        "stopLossPrice": 19.63,
+        "targetPrice": 16.12,
+        "priceVsIdeal": 71.41
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600480",
+      "name": "凌云股份",
+      "price": 11.01,
+      "totalScore": 43.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内18次大涨/7涨停(高频)",
+        "7次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 18,
+      "scope": {
+        "coreScore": 71.1,
+        "totalScore": 64.38,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 68,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 18.38,
+        "intrinsicValue": 13.49,
+        "conservativeValue": 11.87,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 10.09,
+        "stopLossPrice": 10.13,
+        "targetPrice": 13.06,
+        "priceVsIdeal": 9.12
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603869",
+      "name": "ST智知",
+      "price": 10.22,
+      "totalScore": 43.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内17次大涨/17涨停(高频)",
+        "17次涨停(强基因)",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 17,
+      "scope": {
+        "coreScore": 62.44,
+        "totalScore": 61,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 47,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -3.86,
+        "intrinsicValue": 9.84,
+        "conservativeValue": 8.66,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 7.36,
+        "stopLossPrice": 9.4,
+        "targetPrice": 9.53,
+        "priceVsIdeal": 38.86
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002176",
+      "name": "江特电机",
+      "price": 11.26,
+      "totalScore": 43.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内24次大涨/24涨停(高频)",
+        "24次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 24,
+      "scope": {
+        "coreScore": 62.04,
+        "totalScore": 58.54,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.55,
+        "intrinsicValue": 10.98,
+        "conservativeValue": 9.66,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 8.21,
+        "stopLossPrice": 10.36,
+        "targetPrice": 10.63,
+        "priceVsIdeal": 37.15
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002256",
+      "name": "兆新股份",
+      "price": 4.56,
+      "totalScore": 43.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内16次大涨/15涨停(高频)",
+        "15次涨停(强基因)",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 16,
+      "scope": {
+        "coreScore": 58.36,
+        "totalScore": 55.38,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.09,
+        "intrinsicValue": 3.56,
+        "conservativeValue": 3.13,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 2.66,
+        "stopLossPrice": 4.2,
+        "targetPrice": 3.44,
+        "priceVsIdeal": 71.43
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603272",
+      "name": "*ST联翔",
+      "price": 43.71,
+      "totalScore": 43.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 76,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 55
+      },
+      "signals": [
+        "年内19次大涨/19涨停(高频)",
+        "19次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 19,
+      "scope": {
+        "coreScore": 61.36,
+        "totalScore": 54.72,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.56,
+        "intrinsicValue": 42.62,
+        "conservativeValue": 37.51,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 31.88,
+        "stopLossPrice": 40.21,
+        "targetPrice": 41.26,
+        "priceVsIdeal": 37.11
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600476",
+      "name": "*ST湘邮",
+      "price": 11.43,
+      "totalScore": 43.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 61,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内22次大涨/22涨停(高频)",
+        "22次涨停(强基因)",
+        "近期有大涨",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 22,
+      "scope": {
+        "coreScore": 66,
+        "totalScore": 63.76,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 72,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 21.55,
+        "intrinsicValue": 14.57,
+        "conservativeValue": 12.82,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 10.9,
+        "stopLossPrice": 10.52,
+        "targetPrice": 14.1,
+        "priceVsIdeal": 4.86
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603328",
+      "name": "依顿电子",
+      "price": 12.59,
+      "totalScore": 43.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 61,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内8次大涨/7涨停",
+        "7次涨停(强基因)",
+        "近期有大涨",
+        "涨停基因活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 8,
+      "scope": {
+        "coreScore": 64.82,
+        "totalScore": 63.05,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 47,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -3.88,
+        "intrinsicValue": 12.12,
+        "conservativeValue": 10.67,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 9.07,
+        "stopLossPrice": 11.58,
+        "targetPrice": 11.74,
+        "priceVsIdeal": 38.81
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "605358",
+      "name": "立昂微",
+      "price": 58.09,
+      "totalScore": 43.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "年内15次大涨/12涨停(高频)",
+        "12次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 15,
+      "scope": {
+        "coreScore": 60.8,
+        "totalScore": 59.62,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.56,
+        "intrinsicValue": 56.64,
+        "conservativeValue": 49.84,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 42.36,
+        "stopLossPrice": 53.44,
+        "targetPrice": 54.82,
+        "priceVsIdeal": 37.13
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002990",
+      "name": "盛视科技",
+      "price": 47.89,
+      "totalScore": 43.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "年内17次大涨/17涨停(高频)",
+        "17次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 17,
+      "scope": {
+        "coreScore": 57.76,
+        "totalScore": 56.36,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.22,
+        "intrinsicValue": 37.35,
+        "conservativeValue": 32.87,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 27.94,
+        "stopLossPrice": 44.06,
+        "targetPrice": 36.16,
+        "priceVsIdeal": 71.4
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600180",
+      "name": "*ST瑞茂",
+      "price": 1.55,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内18次大涨/18涨停(高频)",
+        "18次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 18,
+      "scope": {
+        "coreScore": 68,
+        "totalScore": 59.97,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 81,
+        "conclusion": "值得观察",
+        "valuationTier": "低估",
+        "safetyMargin": 27.91,
+        "intrinsicValue": 2.15,
+        "conservativeValue": 1.89,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 1.61,
+        "stopLossPrice": 1.43,
+        "targetPrice": 2.08,
+        "priceVsIdeal": -3.73
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600389",
+      "name": "江山股份",
+      "price": 25.4,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内26次大涨/26涨停(高频)",
+        "26次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 26,
+      "scope": {
+        "coreScore": 67.42,
+        "totalScore": 62.2,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 57,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 8.04,
+        "intrinsicValue": 27.62,
+        "conservativeValue": 24.31,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 20.66,
+        "stopLossPrice": 23.37,
+        "targetPrice": 26.74,
+        "priceVsIdeal": 22.94
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600525",
+      "name": "ST长园",
+      "price": 5.26,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内19次大涨/19涨停(高频)",
+        "19次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 19,
+      "scope": {
+        "coreScore": 66.02,
+        "totalScore": 59.13,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 68,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 18.32,
+        "intrinsicValue": 6.44,
+        "conservativeValue": 5.67,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 4.82,
+        "stopLossPrice": 4.84,
+        "targetPrice": 6.24,
+        "priceVsIdeal": 9.13
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600572",
+      "name": "康恩贝",
+      "price": 4.17,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内8次大涨/6涨停",
+        "6次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 8,
+      "scope": {
+        "coreScore": 69.22,
+        "totalScore": 61.11,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 62,
+        "conclusion": "值得观察",
+        "valuationTier": "合理",
+        "safetyMargin": 13.12,
+        "intrinsicValue": 4.8,
+        "conservativeValue": 4.22,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 3.59,
+        "stopLossPrice": 3.84,
+        "targetPrice": 4.64,
+        "priceVsIdeal": 16.16
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600676",
+      "name": "交运股份",
+      "price": 6.41,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内20次大涨/20涨停(高频)",
+        "20次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 20,
+      "scope": {
+        "coreScore": 67.64,
+        "totalScore": 59.85,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 75,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 23.78,
+        "intrinsicValue": 8.41,
+        "conservativeValue": 7.4,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 6.29,
+        "stopLossPrice": 5.9,
+        "targetPrice": 8.14,
+        "priceVsIdeal": 1.91
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600720",
+      "name": "中交设计",
+      "price": 6.02,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内21次大涨/15涨停(高频)",
+        "15次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 21,
+      "scope": {
+        "coreScore": 73.48,
+        "totalScore": 63.41,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 81,
+        "conclusion": "值得观察",
+        "valuationTier": "低估",
+        "safetyMargin": 27.9,
+        "intrinsicValue": 8.35,
+        "conservativeValue": 7.35,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 6.25,
+        "stopLossPrice": 5.54,
+        "targetPrice": 8.09,
+        "priceVsIdeal": -3.68
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603109",
+      "name": "神驰机电",
+      "price": 21.23,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内25次大涨/21涨停(高频)",
+        "21次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 25,
+      "scope": {
+        "coreScore": 62.98,
+        "totalScore": 60.45,
+        "businessModel": 62,
+        "management": 66,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.56,
+        "intrinsicValue": 20.7,
+        "conservativeValue": 18.22,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 15.49,
+        "stopLossPrice": 19.53,
+        "targetPrice": 20.04,
+        "priceVsIdeal": 37.06
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603237",
+      "name": "五芳斋",
+      "price": 15.9,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内40次大涨/35涨停(高频)",
+        "35次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 40,
+      "scope": {
+        "coreScore": 67.28,
+        "totalScore": 61.4,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 55,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 5.86,
+        "intrinsicValue": 16.89,
+        "conservativeValue": 14.86,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 12.63,
+        "stopLossPrice": 14.63,
+        "targetPrice": 16.35,
+        "priceVsIdeal": 25.89
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603612",
+      "name": "索通发展",
+      "price": 21.45,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内31次大涨/22涨停(高频)",
+        "22次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 31,
+      "scope": {
+        "coreScore": 71.32,
+        "totalScore": 64.9,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 69,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 19.18,
+        "intrinsicValue": 26.54,
+        "conservativeValue": 23.36,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 19.86,
+        "stopLossPrice": 19.73,
+        "targetPrice": 25.7,
+        "priceVsIdeal": 8.01
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603758",
+      "name": "秦安股份",
+      "price": 10.72,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内25次大涨/19涨停(高频)",
+        "19次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 25,
+      "scope": {
+        "coreScore": 64.54,
+        "totalScore": 58.93,
+        "businessModel": 62,
+        "management": 66,
+        "valuation": 50,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 0,
+        "intrinsicValue": 10.72,
+        "conservativeValue": 9.43,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 8.02,
+        "stopLossPrice": 9.86,
+        "targetPrice": 10.37,
+        "priceVsIdeal": 33.67
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603998",
+      "name": "方盛制药",
+      "price": 9.84,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内20次大涨/17涨停(高频)",
+        "17次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 20,
+      "scope": {
+        "coreScore": 70.12,
+        "totalScore": 62.25,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 65,
+        "conclusion": "值得观察",
+        "valuationTier": "合理",
+        "safetyMargin": 15.83,
+        "intrinsicValue": 11.69,
+        "conservativeValue": 10.29,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 8.75,
+        "stopLossPrice": 9.05,
+        "targetPrice": 11.32,
+        "priceVsIdeal": 12.46
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "000504",
+      "name": "*ST生物",
+      "price": 9.44,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内40次大涨/40涨停(高频)",
+        "40次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 40,
+      "scope": {
+        "coreScore": 58.28,
+        "totalScore": 53.22,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.26,
+        "intrinsicValue": 7.36,
+        "conservativeValue": 6.48,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 5.51,
+        "stopLossPrice": 8.68,
+        "targetPrice": 7.13,
+        "priceVsIdeal": 71.32
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "003030",
+      "name": "祖名股份",
+      "price": 21.47,
+      "totalScore": 42.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内20次大涨/18涨停(高频)",
+        "18次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 20,
+      "scope": {
+        "coreScore": 58.8,
+        "totalScore": 57.38,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 38,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -17.64,
+        "intrinsicValue": 18.25,
+        "conservativeValue": 16.06,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 13.65,
+        "stopLossPrice": 19.75,
+        "targetPrice": 17.67,
+        "priceVsIdeal": 57.29
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600116",
+      "name": "三峡水利",
+      "price": 7.01,
+      "totalScore": 42.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 58,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内9次大涨/8涨停",
+        "8次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 9,
+      "scope": {
+        "coreScore": 65.38,
+        "totalScore": 60.1,
+        "businessModel": 62,
+        "management": 66,
+        "valuation": 54,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 4.76,
+        "intrinsicValue": 7.36,
+        "conservativeValue": 6.48,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 5.51,
+        "stopLossPrice": 6.45,
+        "targetPrice": 7.13,
+        "priceVsIdeal": 27.22
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600586",
+      "name": "金晶科技",
+      "price": 4.84,
+      "totalScore": 42.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 58,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内8次大涨/8涨停",
+        "8次涨停(强基因)",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 8,
+      "scope": {
+        "coreScore": 67.6,
+        "totalScore": 61.35,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 75,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 23.78,
+        "intrinsicValue": 6.35,
+        "conservativeValue": 5.59,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 4.75,
+        "stopLossPrice": 4.45,
+        "targetPrice": 6.15,
+        "priceVsIdeal": 1.89
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "002065",
+      "name": "东华软件",
+      "price": 7.45,
+      "totalScore": 42.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 58,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内8次大涨/6涨停",
+        "6次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 8,
+      "scope": {
+        "coreScore": 62.04,
+        "totalScore": 60.79,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 43,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -9.56,
+        "intrinsicValue": 6.8,
+        "conservativeValue": 5.98,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 5.08,
+        "stopLossPrice": 6.85,
+        "targetPrice": 6.58,
+        "priceVsIdeal": 46.65
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002351",
+      "name": "漫步者",
+      "price": 11.32,
+      "totalScore": 42.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 58,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内12次大涨/9涨停",
+        "9次涨停(强基因)",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 12,
+      "scope": {
+        "coreScore": 65.98,
+        "totalScore": 63.57,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 49,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -1.25,
+        "intrinsicValue": 11.18,
+        "conservativeValue": 9.84,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 8.36,
+        "stopLossPrice": 10.41,
+        "targetPrice": 10.82,
+        "priceVsIdeal": 35.41
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600850",
+      "name": "电科数字",
+      "price": 22.87,
+      "totalScore": 42.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 57,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内5次大涨/4涨停",
+        "近期有大涨",
+        "10天内大涨过",
+        "涨停基因活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 5,
+      "scope": {
+        "coreScore": 58.26,
+        "totalScore": 60.44,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 35,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -23.09,
+        "intrinsicValue": 18.58,
+        "conservativeValue": 16.35,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 13.9,
+        "stopLossPrice": 21.04,
+        "targetPrice": 17.99,
+        "priceVsIdeal": 64.53
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "000070",
+      "name": "特发信息",
+      "price": 18.06,
+      "totalScore": 42.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 57,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内4次大涨/4涨停",
+        "近期有大涨",
+        "10天内大涨过",
+        "涨停基因活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 4,
+      "scope": {
+        "coreScore": 61.32,
+        "totalScore": 61.83,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.56,
+        "intrinsicValue": 17.61,
+        "conservativeValue": 15.5,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 13.18,
+        "stopLossPrice": 16.62,
+        "targetPrice": 17.05,
+        "priceVsIdeal": 37.03
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002487",
+      "name": "大金重工",
+      "price": 69.91,
+      "totalScore": 42.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 71,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 55
+      },
+      "signals": [
+        "年内25次大涨/19涨停(高频)",
+        "19次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 25,
+      "scope": {
+        "coreScore": 58.24,
+        "totalScore": 53.64,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.2,
+        "intrinsicValue": 54.53,
+        "conservativeValue": 47.99,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 40.79,
+        "stopLossPrice": 64.32,
+        "targetPrice": 52.79,
+        "priceVsIdeal": 71.39
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603888",
+      "name": "新华网",
+      "price": 17.9,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内6次大涨/6涨停",
+        "6次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 6,
+      "scope": {
+        "coreScore": 59.5,
+        "totalScore": 57.84,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 35,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -23.11,
+        "intrinsicValue": 14.54,
+        "conservativeValue": 12.8,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 10.88,
+        "stopLossPrice": 16.47,
+        "targetPrice": 14.08,
+        "priceVsIdeal": 64.52
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603906",
+      "name": "龙蟠科技",
+      "price": 24.65,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内10次大涨/6涨停",
+        "6次涨停(强基因)",
+        "近期有大涨",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 10,
+      "scope": {
+        "coreScore": 61.96,
+        "totalScore": 62.35,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.58,
+        "intrinsicValue": 24.03,
+        "conservativeValue": 21.15,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 17.98,
+        "stopLossPrice": 22.68,
+        "targetPrice": 23.27,
+        "priceVsIdeal": 37.1
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "605398",
+      "name": "新炬网络",
+      "price": 23.08,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内9次大涨/9涨停",
+        "9次涨停(强基因)",
+        "涨停基因活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 9,
+      "scope": {
+        "coreScore": 58.96,
+        "totalScore": 60.76,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 32,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.22,
+        "intrinsicValue": 18,
+        "conservativeValue": 15.84,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 13.46,
+        "stopLossPrice": 21.23,
+        "targetPrice": 17.42,
+        "priceVsIdeal": 71.47
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "000409",
+      "name": "云鼎科技",
+      "price": 9.62,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内10次大涨/8涨停",
+        "8次涨停(强基因)",
+        "近期有大涨",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 10,
+      "scope": {
+        "coreScore": 58.76,
+        "totalScore": 58.78,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 30,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.27,
+        "intrinsicValue": 7.5,
+        "conservativeValue": 6.6,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 5.61,
+        "stopLossPrice": 8.85,
+        "targetPrice": 7.26,
+        "priceVsIdeal": 71.48
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "000715",
+      "name": "中兴商业",
+      "price": 5.13,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 68,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内18次大涨/16涨停(高频)",
+        "16次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 18,
+      "scope": {
+        "coreScore": 68.86,
+        "totalScore": 60.77,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 60,
+        "conclusion": "值得观察",
+        "valuationTier": "合理",
+        "safetyMargin": 11.09,
+        "intrinsicValue": 5.77,
+        "conservativeValue": 5.08,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 4.32,
+        "stopLossPrice": 4.72,
+        "targetPrice": 5.59,
+        "priceVsIdeal": 18.75
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "000875",
+      "name": "电投绿能",
+      "price": 6.79,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内15次大涨/9涨停(高频)",
+        "9次涨停(强基因)",
+        "近期有大涨",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 15,
+      "scope": {
+        "coreScore": 62.64,
+        "totalScore": 58.73,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 47,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -3.82,
+        "intrinsicValue": 6.54,
+        "conservativeValue": 5.76,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 4.9,
+        "stopLossPrice": 6.25,
+        "targetPrice": 6.34,
+        "priceVsIdeal": 38.57
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002122",
+      "name": "ST汇洲",
+      "price": 2.69,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 68,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内18次大涨/18涨停(高频)",
+        "18次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 18,
+      "scope": {
+        "coreScore": 60.86,
+        "totalScore": 55.8,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 40,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -14.47,
+        "intrinsicValue": 2.35,
+        "conservativeValue": 2.07,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 1.76,
+        "stopLossPrice": 2.47,
+        "targetPrice": 2.28,
+        "priceVsIdeal": 52.84
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002369",
+      "name": "卓翼科技",
+      "price": 6.39,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内11次大涨/7涨停",
+        "7次涨停(强基因)",
+        "近期有大涨",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 11,
+      "scope": {
+        "coreScore": 61.88,
+        "totalScore": 60.38,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.57,
+        "intrinsicValue": 6.23,
+        "conservativeValue": 5.48,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 4.66,
+        "stopLossPrice": 5.88,
+        "targetPrice": 6.03,
+        "priceVsIdeal": 37.12
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002636",
+      "name": "金安国纪",
+      "price": 51.73,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 58,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "年内15次大涨/14涨停(高频)",
+        "14次涨停(强基因)",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 15,
+      "scope": {
+        "coreScore": 57.68,
+        "totalScore": 56.89,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.2,
+        "intrinsicValue": 40.35,
+        "conservativeValue": 35.51,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 30.18,
+        "stopLossPrice": 47.59,
+        "targetPrice": 39.06,
+        "priceVsIdeal": 71.4
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002977",
+      "name": "*ST天箭",
+      "price": 26.94,
+      "totalScore": 42,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内5次大涨/5涨停",
+        "5次涨停(强基因)",
+        "10天内大涨过",
+        "涨停基因活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 5,
+      "scope": {
+        "coreScore": 63.86,
+        "totalScore": 63.19,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 59,
+        "conclusion": "值得观察",
+        "valuationTier": "合理",
+        "safetyMargin": 10.11,
+        "intrinsicValue": 29.97,
+        "conservativeValue": 26.37,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 22.41,
+        "stopLossPrice": 24.78,
+        "targetPrice": 29.01,
+        "priceVsIdeal": 20.21
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600361",
+      "name": "创新新材",
+      "price": 4.55,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内14次大涨/12涨停",
+        "12次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 14,
+      "scope": {
+        "coreScore": 69.08,
+        "totalScore": 60.82,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 61,
+        "conclusion": "值得观察",
+        "valuationTier": "合理",
+        "safetyMargin": 12.16,
+        "intrinsicValue": 5.18,
+        "conservativeValue": 4.56,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 3.88,
+        "stopLossPrice": 4.19,
+        "targetPrice": 5.02,
+        "priceVsIdeal": 17.27
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600498",
+      "name": "烽火通信",
+      "price": 52.02,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "年内7次大涨/5涨停",
+        "5次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 7,
+      "scope": {
+        "coreScore": 60.16,
+        "totalScore": 59.41,
+        "businessModel": 62,
+        "management": 68,
+        "valuation": 30,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.19,
+        "intrinsicValue": 40.58,
+        "conservativeValue": 35.71,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 30.35,
+        "stopLossPrice": 47.86,
+        "targetPrice": 39.28,
+        "priceVsIdeal": 71.4
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600753",
+      "name": "*ST海钦",
+      "price": 12.4,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内12次大涨/12涨停",
+        "12次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 12,
+      "scope": {
+        "coreScore": 58.16,
+        "totalScore": 55.49,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.23,
+        "intrinsicValue": 9.67,
+        "conservativeValue": 8.51,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 7.23,
+        "stopLossPrice": 11.41,
+        "targetPrice": 9.36,
+        "priceVsIdeal": 71.51
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "601969",
+      "name": "海南矿业",
+      "price": 9.72,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内10次大涨/8涨停",
+        "8次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 10,
+      "scope": {
+        "coreScore": 60.2,
+        "totalScore": 54.42,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 38,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -17.68,
+        "intrinsicValue": 8.26,
+        "conservativeValue": 7.27,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 6.18,
+        "stopLossPrice": 8.94,
+        "targetPrice": 8,
+        "priceVsIdeal": 57.28
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603885",
+      "name": "吉祥航空",
+      "price": 10.96,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内10次大涨/8涨停",
+        "8次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 10,
+      "scope": {
+        "coreScore": 67.42,
+        "totalScore": 60.31,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 56,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 6.96,
+        "intrinsicValue": 11.78,
+        "conservativeValue": 10.37,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 8.81,
+        "stopLossPrice": 10.08,
+        "targetPrice": 11.41,
+        "priceVsIdeal": 24.4
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603928",
+      "name": "兴业股份",
+      "price": 15.18,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内12次大涨/10涨停",
+        "10次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 12,
+      "scope": {
+        "coreScore": 61.06,
+        "totalScore": 57.75,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 40,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -14.31,
+        "intrinsicValue": 13.28,
+        "conservativeValue": 11.69,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 9.94,
+        "stopLossPrice": 13.97,
+        "targetPrice": 12.86,
+        "priceVsIdeal": 52.72
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603985",
+      "name": "恒润股份",
+      "price": 22.82,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内8次大涨/6涨停",
+        "6次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 8,
+      "scope": {
+        "coreScore": 59.84,
+        "totalScore": 57.68,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 36,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -21.19,
+        "intrinsicValue": 18.83,
+        "conservativeValue": 16.57,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 14.08,
+        "stopLossPrice": 20.99,
+        "targetPrice": 18.23,
+        "priceVsIdeal": 62.07
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "000630",
+      "name": "铜陵有色",
+      "price": 7.07,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内13次大涨/8涨停",
+        "8次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 13,
+      "scope": {
+        "coreScore": 62.54,
+        "totalScore": 57.54,
+        "businessModel": 62,
+        "management": 68,
+        "valuation": 39,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -15.9,
+        "intrinsicValue": 6.1,
+        "conservativeValue": 5.37,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 4.56,
+        "stopLossPrice": 6.5,
+        "targetPrice": 5.91,
+        "priceVsIdeal": 55.04
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "001239",
+      "name": "永达股份",
+      "price": 13.1,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内10次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 10,
+      "scope": {
+        "coreScore": 61.12,
+        "totalScore": 57.29,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 41,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -12.64,
+        "intrinsicValue": 11.63,
+        "conservativeValue": 10.23,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 8.7,
+        "stopLossPrice": 12.05,
+        "targetPrice": 11.25,
+        "priceVsIdeal": 50.57
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002548",
+      "name": "金新农",
+      "price": 4.1,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 66,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内13次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近30天多次大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 13,
+      "scope": {
+        "coreScore": 64.66,
+        "totalScore": 57.75,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 63,
+        "conclusion": "值得观察",
+        "valuationTier": "合理",
+        "safetyMargin": 14.05,
+        "intrinsicValue": 4.77,
+        "conservativeValue": 4.2,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 3.57,
+        "stopLossPrice": 3.77,
+        "targetPrice": 4.62,
+        "priceVsIdeal": 14.85
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002937",
+      "name": "兴瑞科技",
+      "price": 34.6,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "年内30次大涨/24涨停(高频)",
+        "24次涨停(强基因)",
+        "近期有大涨",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 30,
+      "scope": {
+        "coreScore": 58.36,
+        "totalScore": 58.6,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.2,
+        "intrinsicValue": 26.99,
+        "conservativeValue": 23.75,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 20.19,
+        "stopLossPrice": 31.83,
+        "targetPrice": 26.13,
+        "priceVsIdeal": 71.37
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "003026",
+      "name": "中晶科技",
+      "price": 44.68,
+      "totalScore": 41.5,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 56,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 55
+      },
+      "signals": [
+        "年内12次大涨/11涨停",
+        "11次涨停(强基因)",
+        "近期有大涨",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 12,
+      "scope": {
+        "coreScore": 57.52,
+        "totalScore": 57.49,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.21,
+        "intrinsicValue": 34.85,
+        "conservativeValue": 30.67,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 26.07,
+        "stopLossPrice": 41.11,
+        "targetPrice": 33.74,
+        "priceVsIdeal": 71.38
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "003015",
+      "name": "日久光电",
+      "price": 12.33,
+      "totalScore": 41.25,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 53,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内6次大涨/1涨停",
+        "近期有大涨",
+        "10天内大涨过",
+        "涨停基因活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 6,
+      "scope": {
+        "coreScore": 61.88,
+        "totalScore": 62.18,
+        "businessModel": 62,
+        "management": 66,
+        "valuation": 40,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -14.27,
+        "intrinsicValue": 10.79,
+        "conservativeValue": 9.5,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 8.07,
+        "stopLossPrice": 11.34,
+        "targetPrice": 10.45,
+        "priceVsIdeal": 52.79
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600198",
+      "name": "大唐电信",
+      "price": 8.86,
+      "totalScore": 41,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 52,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内5次大涨/4涨停",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 5,
+      "scope": {
+        "coreScore": 61.16,
+        "totalScore": 60.43,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.55,
+        "intrinsicValue": 8.64,
+        "conservativeValue": 7.6,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 6.46,
+        "stopLossPrice": 8.15,
+        "targetPrice": 8.36,
+        "priceVsIdeal": 37.15
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600839",
+      "name": "四川长虹",
+      "price": 7.22,
+      "totalScore": 41,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 52,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内5次大涨/3涨停",
+        "10天内大涨过",
+        "涨停基因活跃",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 5,
+      "scope": {
+        "coreScore": 63.1,
+        "totalScore": 61.67,
+        "businessModel": 62,
+        "management": 66,
+        "valuation": 44,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -8.08,
+        "intrinsicValue": 6.68,
+        "conservativeValue": 5.88,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 5,
+        "stopLossPrice": 6.64,
+        "targetPrice": 6.47,
+        "priceVsIdeal": 44.4
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603310",
+      "name": "巍华新材",
+      "price": 15.85,
+      "totalScore": 41,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 64,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内23次大涨/22涨停(高频)",
+        "22次涨停(强基因)",
+        "近30天多次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 23,
+      "scope": {
+        "coreScore": 64.8,
+        "totalScore": 60.18,
+        "businessModel": 62,
+        "management": 66,
+        "valuation": 51,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 1.25,
+        "intrinsicValue": 16.05,
+        "conservativeValue": 14.12,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 12,
+        "stopLossPrice": 14.58,
+        "targetPrice": 15.53,
+        "priceVsIdeal": 32.08
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002203",
+      "name": "海亮股份",
+      "price": 20.41,
+      "totalScore": 41,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 64,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内22次大涨/21涨停(高频)",
+        "21次涨停(强基因)",
+        "近30天多次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 22,
+      "scope": {
+        "coreScore": 59.88,
+        "totalScore": 58.17,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 38,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -17.64,
+        "intrinsicValue": 17.35,
+        "conservativeValue": 15.27,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 12.98,
+        "stopLossPrice": 18.78,
+        "targetPrice": 16.8,
+        "priceVsIdeal": 57.24
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "002877",
+      "name": "智能自控",
+      "price": 7.98,
+      "totalScore": 41,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 52,
+        "momentum": 50,
+        "industryHeat": 80,
+        "safety": 60
+      },
+      "signals": [
+        "年内4次大涨/4涨停",
+        "近期有大涨",
+        "10天内大涨过",
+        "优先行业",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 4,
+      "scope": {
+        "coreScore": 61.02,
+        "totalScore": 57.72,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 40,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -14.33,
+        "intrinsicValue": 6.98,
+        "conservativeValue": 6.14,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 5.22,
+        "stopLossPrice": 7.34,
+        "targetPrice": 6.75,
+        "priceVsIdeal": 52.87
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600016",
+      "name": "民生银行",
+      "price": 3.54,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内15次大涨/13涨停(高频)",
+        "13次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 15,
+      "scope": {
+        "coreScore": 80.62,
+        "totalScore": 69.03,
+        "businessModel": 78,
+        "management": 74,
+        "valuation": 90,
+        "conclusion": "重点关注",
+        "valuationTier": "低估",
+        "safetyMargin": 33.33,
+        "intrinsicValue": 5.31,
+        "conservativeValue": 4.67,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 3.97,
+        "stopLossPrice": 3.26,
+        "targetPrice": 5.14,
+        "priceVsIdeal": -10.83
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600071",
+      "name": "凤凰光学",
+      "price": 17.94,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内18次大涨/17涨停(高频)",
+        "17次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 18,
+      "scope": {
+        "coreScore": 58.4,
+        "totalScore": 57.28,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 28,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.23,
+        "intrinsicValue": 13.99,
+        "conservativeValue": 12.31,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 10.46,
+        "stopLossPrice": 16.5,
+        "targetPrice": 13.54,
+        "priceVsIdeal": 71.51
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600099",
+      "name": "林海股份",
+      "price": 9.51,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内19次大涨/13涨停(高频)",
+        "13次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 19,
+      "scope": {
+        "coreScore": 58.86,
+        "totalScore": 55.22,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 31,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -28.17,
+        "intrinsicValue": 7.42,
+        "conservativeValue": 6.53,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 5.55,
+        "stopLossPrice": 8.75,
+        "targetPrice": 7.18,
+        "priceVsIdeal": 71.35
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600229",
+      "name": "城市传媒",
+      "price": 5.56,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内16次大涨/14涨停(高频)",
+        "14次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 16,
+      "scope": {
+        "coreScore": 67.64,
+        "totalScore": 59.61,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 75,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 23.84,
+        "intrinsicValue": 7.3,
+        "conservativeValue": 6.42,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 5.46,
+        "stopLossPrice": 5.12,
+        "targetPrice": 7.06,
+        "priceVsIdeal": 1.83
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600273",
+      "name": "嘉化能源",
+      "price": 7.18,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内11次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 11,
+      "scope": {
+        "coreScore": 73.22,
+        "totalScore": 65.3,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 80,
+        "conclusion": "值得观察",
+        "valuationTier": "低估",
+        "safetyMargin": 27.25,
+        "intrinsicValue": 9.87,
+        "conservativeValue": 8.69,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 7.39,
+        "stopLossPrice": 6.61,
+        "targetPrice": 9.56,
+        "priceVsIdeal": -2.84
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600293",
+      "name": "三峡新材",
+      "price": 3.27,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内15次大涨/10涨停(高频)",
+        "10次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 15,
+      "scope": {
+        "coreScore": 65.96,
+        "totalScore": 58.88,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 69,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 19.26,
+        "intrinsicValue": 4.05,
+        "conservativeValue": 3.56,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 3.03,
+        "stopLossPrice": 3.01,
+        "targetPrice": 3.92,
+        "priceVsIdeal": 7.92
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600325",
+      "name": "华发股份",
+      "price": 2.74,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内23次大涨/20涨停(高频)",
+        "20次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 23,
+      "scope": {
+        "coreScore": 68.1,
+        "totalScore": 60.14,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 78,
+        "conclusion": "值得观察",
+        "valuationTier": "低估",
+        "safetyMargin": 25.95,
+        "intrinsicValue": 3.7,
+        "conservativeValue": 3.26,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 2.77,
+        "stopLossPrice": 2.52,
+        "targetPrice": 3.59,
+        "priceVsIdeal": -1.08
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600370",
+      "name": "*ST三房",
+      "price": 1.47,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内33次大涨/33涨停(高频)",
+        "33次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 33,
+      "scope": {
+        "coreScore": 67.7,
+        "totalScore": 59.98,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 76,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 24.62,
+        "intrinsicValue": 1.95,
+        "conservativeValue": 1.72,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 1.46,
+        "stopLossPrice": 1.35,
+        "targetPrice": 1.89,
+        "priceVsIdeal": 0.68
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600423",
+      "name": "*ST柳化",
+      "price": 2.71,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内9次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 9,
+      "scope": {
+        "coreScore": 63.42,
+        "totalScore": 57.46,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 57,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 8.14,
+        "intrinsicValue": 2.95,
+        "conservativeValue": 2.6,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 2.21,
+        "stopLossPrice": 2.49,
+        "targetPrice": 2.86,
+        "priceVsIdeal": 22.62
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600491",
+      "name": "ST龙元",
+      "price": 1.37,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内27次大涨/27涨停(高频)",
+        "27次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 27,
+      "scope": {
+        "coreScore": 68.9,
+        "totalScore": 60.15,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 82,
+        "conclusion": "值得观察",
+        "valuationTier": "低估",
+        "safetyMargin": 28.65,
+        "intrinsicValue": 1.92,
+        "conservativeValue": 1.69,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 1.44,
+        "stopLossPrice": 1.26,
+        "targetPrice": 1.86,
+        "priceVsIdeal": -4.86
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600543",
+      "name": "*ST莫高",
+      "price": 4.6,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内24次大涨/24涨停(高频)",
+        "24次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 24,
+      "scope": {
+        "coreScore": 66.42,
+        "totalScore": 58.82,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 70,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 20,
+        "intrinsicValue": 5.75,
+        "conservativeValue": 5.06,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 4.3,
+        "stopLossPrice": 4.23,
+        "targetPrice": 5.57,
+        "priceVsIdeal": 6.98
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600732",
+      "name": "爱旭股份",
+      "price": 11.69,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内10次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 10,
+      "scope": {
+        "coreScore": 62.32,
+        "totalScore": 58.33,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 50,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 0,
+        "intrinsicValue": 11.69,
+        "conservativeValue": 10.29,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 8.75,
+        "stopLossPrice": 10.75,
+        "targetPrice": 11.32,
+        "priceVsIdeal": 33.6
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "600761",
+      "name": "安徽合力",
+      "price": 16.92,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内9次大涨/8涨停",
+        "8次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 9,
+      "scope": {
+        "coreScore": 72.14,
+        "totalScore": 64.85,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 74,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 23.09,
+        "intrinsicValue": 22,
+        "conservativeValue": 19.36,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 16.46,
+        "stopLossPrice": 15.57,
+        "targetPrice": 21.3,
+        "priceVsIdeal": 2.79
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "600864",
+      "name": "哈投股份",
+      "price": 5.5,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内18次大涨/15涨停(高频)",
+        "15次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 18,
+      "scope": {
+        "coreScore": 65.3,
+        "totalScore": 58.4,
+        "businessModel": 62,
+        "management": 66,
+        "valuation": 54,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 4.84,
+        "intrinsicValue": 5.78,
+        "conservativeValue": 5.09,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 4.33,
+        "stopLossPrice": 5.06,
+        "targetPrice": 5.6,
+        "priceVsIdeal": 27.02
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "601187",
+      "name": "厦门银行",
+      "price": 7.27,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内25次大涨/15涨停(高频)",
+        "15次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 25,
+      "scope": {
+        "coreScore": 73.86,
+        "totalScore": 64.83,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 84,
+        "conclusion": "值得观察",
+        "valuationTier": "低估",
+        "safetyMargin": 29.83,
+        "intrinsicValue": 10.36,
+        "conservativeValue": 9.12,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 7.75,
+        "stopLossPrice": 6.69,
+        "targetPrice": 10.03,
+        "priceVsIdeal": -6.19
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "601858",
+      "name": "中国科传",
+      "price": 23.82,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内31次大涨/26涨停(高频)",
+        "26次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 31,
+      "scope": {
+        "coreScore": 59.16,
+        "totalScore": 56.68,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 34,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -24.97,
+        "intrinsicValue": 19.06,
+        "conservativeValue": 16.77,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高",
+          "商业模式不可持续"
+        ],
+        "idealBuyPrice": 14.25,
+        "stopLossPrice": 21.91,
+        "targetPrice": 18.45,
+        "priceVsIdeal": 67.16
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "601996",
+      "name": "丰林集团",
+      "price": 2.73,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内12次大涨/10涨停",
+        "10次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 12,
+      "scope": {
+        "coreScore": 67.82,
+        "totalScore": 58.78,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 76,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 24.59,
+        "intrinsicValue": 3.62,
+        "conservativeValue": 3.19,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 2.71,
+        "stopLossPrice": 2.51,
+        "targetPrice": 3.51,
+        "priceVsIdeal": 0.74
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603007",
+      "name": "顺景科技",
+      "price": 6.16,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内17次大涨/15涨停(高频)",
+        "15次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 17,
+      "scope": {
+        "coreScore": 61.4,
+        "totalScore": 56.11,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 48,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": -2.5,
+        "intrinsicValue": 6.01,
+        "conservativeValue": 5.29,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 4.5,
+        "stopLossPrice": 5.67,
+        "targetPrice": 5.82,
+        "priceVsIdeal": 36.89
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603008",
+      "name": "ST喜临门",
+      "price": 9.25,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内10次大涨/10涨停",
+        "10次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 10,
+      "scope": {
+        "coreScore": 71.8,
+        "totalScore": 62.76,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 75,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 23.81,
+        "intrinsicValue": 12.14,
+        "conservativeValue": 10.68,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 9.08,
+        "stopLossPrice": 8.51,
+        "targetPrice": 11.75,
+        "priceVsIdeal": 1.87
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603028",
+      "name": "赛福天",
+      "price": 7.79,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内11次大涨/11涨停",
+        "11次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 11,
+      "scope": {
+        "coreScore": 62.6,
+        "totalScore": 57.4,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 52,
+        "conclusion": "估值偏贵",
+        "valuationTier": "偏高估",
+        "safetyMargin": 2.38,
+        "intrinsicValue": 7.98,
+        "conservativeValue": 7.02,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 5.97,
+        "stopLossPrice": 7.17,
+        "targetPrice": 7.72,
+        "priceVsIdeal": 30.49
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603517",
+      "name": "ST绝味",
+      "price": 13.19,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内9次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 9,
+      "scope": {
+        "coreScore": 67.44,
+        "totalScore": 61.18,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 75,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 23.8,
+        "intrinsicValue": 17.31,
+        "conservativeValue": 15.23,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 12.95,
+        "stopLossPrice": 12.13,
+        "targetPrice": 16.75,
+        "priceVsIdeal": 1.85
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    },
+    {
+      "code": "603520",
+      "name": "司太立",
+      "price": 10.01,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内10次大涨/9涨停",
+        "9次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 10,
+      "scope": {
+        "coreScore": 62.32,
+        "totalScore": 57.71,
+        "businessModel": 62,
+        "management": 60,
+        "valuation": 45,
+        "conclusion": "估值偏贵",
+        "valuationTier": "明显高估",
+        "safetyMargin": -6.72,
+        "intrinsicValue": 9.38,
+        "conservativeValue": 8.25,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [
+          "估值偏高"
+        ],
+        "idealBuyPrice": 7.01,
+        "stopLossPrice": 9.21,
+        "targetPrice": 9.08,
+        "priceVsIdeal": 42.8
+      },
+      "verdict": "谨慎观望 - 大涨信号有但基本面待验证"
+    },
+    {
+      "code": "603529",
+      "name": "爱玛科技",
+      "price": 21.19,
+      "totalScore": 40.75,
+      "probability": "低",
+      "action": "谨慎观望",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 63,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内22次大涨/16涨停(高频)",
+        "16次涨停(强基因)",
+        "近期有大涨",
+        "10天内大涨过",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 22,
+      "scope": {
+        "coreScore": 72.2,
+        "totalScore": 65.4,
+        "businessModel": 68,
+        "management": 66,
+        "valuation": 75,
+        "conclusion": "值得观察",
+        "valuationTier": "合理偏低",
+        "safetyMargin": 23.8,
+        "intrinsicValue": 27.81,
+        "conservativeValue": 24.47,
+        "buyZone": null,
+        "stopDoingBlocked": false,
+        "riskFlags": [],
+        "idealBuyPrice": 20.8,
+        "stopLossPrice": 19.49,
+        "targetPrice": 26.92,
+        "priceVsIdeal": 1.88
+      },
+      "verdict": "纳入观察 - 基本面尚可+有大涨信号"
+    }
+  ],
+  "etfs": [
+    {
+      "code": "513290",
+      "name": "汇添富纳斯达克生物科技ETF",
+      "price": 1.38,
+      "totalScore": 36,
+      "probability": "低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 44,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内7次大涨/7涨停",
+        "7次涨停(强基因)",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 7,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "513240",
+      "name": "华安中证港股通信息技术综合ETF",
+      "price": 6.13,
+      "totalScore": 33,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 32,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内7次大涨/2涨停",
+        "近期有大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 7,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "512640",
+      "name": "嘉实中证金融地产ETF",
+      "price": 0.57,
+      "totalScore": 30,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 20,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "512930",
+      "name": "平安人工智能ETF",
+      "price": 1.04,
+      "totalScore": 30,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 20,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内2次大涨",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 2,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "515180",
+      "name": "易方达中证红利ETF",
+      "price": 1.07,
+      "totalScore": 30,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 20,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "515350",
+      "name": "民生加银沪深300ETF",
+      "price": 1.14,
+      "totalScore": 30,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 20,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "515720",
+      "name": "富国中证金融科技主题ETF",
+      "price": 1.16,
+      "totalScore": 30,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 20,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "516120",
+      "name": "富国中证细分化工产业主题ETF",
+      "price": 1.57,
+      "totalScore": 30,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 20,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内2次大涨",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 2,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "516220",
+      "name": "国泰中证细分化工产业主题ETF",
+      "price": 0.72,
+      "totalScore": 30,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 20,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "516570",
+      "name": "易方达中证石化产业ETF",
+      "price": 1.4,
+      "totalScore": 30,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 20,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内2次大涨",
+        "涨停基因活跃",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 2,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "515170",
+      "name": "华夏中证细分食品饮料产业主题ETF",
+      "price": 1.17,
+      "totalScore": 28.75,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 15,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "515310",
+      "name": "添富沪深300ETF",
+      "price": 1.09,
+      "totalScore": 28.75,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 15,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "515910",
+      "name": "中金MSCI中国A股国际质量ETF",
+      "price": 0.91,
+      "totalScore": 28.75,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 15,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "516110",
+      "name": "国泰中证800汽车与零部件ETF",
+      "price": 0.94,
+      "totalScore": 28.75,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 15,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "516370",
+      "name": "汇添富中证全指电力公用事业ETF",
+      "price": 2.02,
+      "totalScore": 28.75,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 15,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "516630",
+      "name": "华夏中证云计算与大数据主题ETF",
+      "price": 1.2,
+      "totalScore": 28.75,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 15,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "516820",
+      "name": "平安中证医药及医疗器械创新ETF",
+      "price": 0.96,
+      "totalScore": 28.75,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 15,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "512560",
+      "name": "易方达中证军工ETF",
+      "price": 1.83,
+      "totalScore": 28.5,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 14,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内2次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 2,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "512660",
+      "name": "国泰中证军工ETF",
+      "price": 0.98,
+      "totalScore": 27.5,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 10,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "512670",
+      "name": "鹏华中证国防ETF",
+      "price": 1.4,
+      "totalScore": 27.5,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 10,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "516580",
+      "name": "博时中证新能源ETF",
+      "price": 1.95,
+      "totalScore": 27.5,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 10,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    },
+    {
+      "code": "518860",
+      "name": "建信上海金ETF",
+      "price": 8.92,
+      "totalScore": 27.5,
+      "probability": "极低",
+      "action": "暂不考虑",
+      "dimensions": {
+        "technicals": 0,
+        "limitupGene": 10,
+        "momentum": 50,
+        "industryHeat": 60,
+        "safety": 60
+      },
+      "signals": [
+        "年内1次大涨",
+        "板块涨停活跃"
+      ],
+      "limitupCount": 1,
+      "verdict": "ETF/LOF - 无基本面分析"
+    }
+  ]
+}

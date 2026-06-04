@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-06-04T02:54:00.778739",
+  "total_stocks_processed": 0,
+  "total_limitup_stocks": 0,
+  "total_limitup_events": 0,
+  "type_stats": {
+    "stock": 0,
+    "etf": 0,
+    "lof": 0
+  },
+  "daily_counts": [],
+  "freq_ranking_top100": [],
+  "pre_limit_features": {
+    "avg_volume_ratio": 0,
+    "avg_pre_5d_change": 0,
+    "volume_ratio_distribution": {
+      "<1": 0,
+      "1-2": 0,
+      "2-3": 0,
+      "3-5": 0,
+      ">5": 0
+    },
+    "pre_5d_change_distribution": {
+      "<-10%": 0,
+      "-10~-5%": 0,
+      "-5~0%": 0,
+      "0~5%": 0,
+      "5~10%": 0,
+      ">10%": 0
+    }
+  },
+  "daily_limitups": {},
+  "limitup_events": {}
+}

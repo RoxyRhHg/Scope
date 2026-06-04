@@ -341,6 +341,23 @@ export function pickFocusStocks(rankedStocks, settings = {}, limit = 10) {
       const tier = stock.valuationCard?.valuationTier ?? stock.maoValuation?.valuationTier;
       return tier !== "明显高估" && tier !== "偏高估";
     })
+    // 硬过滤：价格必须在买入区间内
+    .filter((stock) => {
+      const mv = stock.maoValuation;
+      if (!mv || !mv.buyZoneHigh) return false;
+      return stock.price <= mv.buyZoneHigh;
+    })
+    // 硬过滤：安全边际至少 10%
+    .filter((stock) => {
+      const mv = stock.maoValuation;
+      if (!mv || mv.marginOfSafety == null) return false;
+      return mv.marginOfSafety >= 10;
+    })
+    // 硬过滤：估值档位必须是低估或合理偏低
+    .filter((stock) => {
+      const tier = stock.valuationCard?.valuationTier ?? stock.maoValuation?.valuationTier;
+      return tier === "低估" || tier === "合理偏低";
+    })
     .filter((stock) => stock.scores.capitalFit >= 60)
     .filter((stock) => {
       const consensus = stock.consensus?.consensus;
@@ -355,6 +372,23 @@ export function pickFocusStocks(rankedStocks, settings = {}, limit = 10) {
 
 export function buildIndustryTop(rankedStocks, industry, limit = 20) {
   return rankedStocks.filter((stock) => stock.industry === industry).slice(0, limit);
+}
+
+export function buildConceptTop(rankedStocks, concept, limit = 10) {
+  if (!concept || concept === "全部概念") return [];
+
+  // 在该概念内取核心分最高的，排除明确不能碰的（估值过高/不为清单/回避）
+  const EXCLUDED = new Set(["估值偏贵", "明确回避", "暂不推荐"]);
+
+  return rankedStocks
+    .filter((stock) => (stock.concepts ?? []).includes(concept))
+    .filter((stock) => !EXCLUDED.has(stock.conclusion ?? ""))
+    .filter((stock) => !stock.stopDoingBlocked)
+    .filter((stock) => {
+      const tier = stock.maoValuation?.valuationTier ?? "";
+      return tier !== "明显高估" && tier !== "偏高估";
+    })
+    .slice(0, limit);
 }
 
 export function summarizeIndustries(rankedStocks) {

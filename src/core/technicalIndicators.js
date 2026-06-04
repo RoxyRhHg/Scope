@@ -179,6 +179,23 @@ export function computeTechnicalSnapshot(bars) {
   const close = closes.at(-1) ?? 0;
   const previousClose = closes.at(-2) ?? close;
 
+  // 移动均线
+  const ma5 = round(average(closes.slice(-5)), 2);
+  const ma10 = round(average(closes.slice(-10)), 2);
+  const ma20 = round(average(closes.slice(-20)), 2);
+  const ma60 = round(average(closes.slice(-Math.min(60, closes.length))), 2);
+
+  // 52周（约260个交易日）高低点
+  const yearBars = bars.slice(-260);
+  const high52Week = round(Math.max(...yearBars.map((b) => Number(b.high ?? b.close))), 2);
+  const low52Week = round(Math.min(...yearBars.map((b) => Number(b.low ?? b.close))), 2);
+
+  // 阶段涨跌幅
+  const close5d = closes.at(-6) ?? closes[0];
+  const close20d = closes.at(-21) ?? closes[0];
+  const pct5d = round(((close - close5d) / Math.max(close5d, 0.01)) * 100, 2);
+  const pct20d = round(((close - close20d) / Math.max(close20d, 0.01)) * 100, 2);
+
   return {
     close: round(close),
     previousClose: round(previousClose),
@@ -187,6 +204,11 @@ export function computeTechnicalSnapshot(bars) {
     kdj,
     volume,
     weekly60,
+    movingAverages: { ma5, ma10, ma20, ma60 },
+    high52Week,
+    low52Week,
+    pct5d,
+    pct20d,
     trend: {
       bias: inferBias({ macd, boll, kdj, volume, weekly60, close, previousClose }),
     },
@@ -236,6 +258,20 @@ export function buildTechnicalNarrative(snapshot) {
     lines.push(`60周K 位于长期均线之下，且 60 周均线下行，中期趋势仍需等待修复。`);
   } else {
     lines.push(`60周K 与 60 周均线关系偏中性，当前更适合结合估值和基本面耐心观察。`);
+  }
+
+  if (snapshot.movingAverages) {
+    const ma = snapshot.movingAverages;
+    const aboveMa60 = snapshot.close >= ma.ma60;
+    lines.push(
+      `均线：MA5 ${ma.ma5} / MA10 ${ma.ma10} / MA20 ${ma.ma20} / MA60 ${ma.ma60}，当前价格${aboveMa60 ? "站上" : "低于"}MA60。`,
+    );
+  }
+
+  if (snapshot.high52Week && snapshot.low52Week) {
+    const pctFromHigh = round(((snapshot.high52Week - snapshot.close) / Math.max(snapshot.high52Week, 0.01)) * 100);
+    const pctFromLow = round(((snapshot.close - snapshot.low52Week) / Math.max(snapshot.low52Week, 0.01)) * 100);
+    lines.push(`52周范围：${snapshot.low52Week} - ${snapshot.high52Week}，距高点${pctFromHigh}%，距低点${pctFromLow}%。`);
   }
 
   lines.push(
