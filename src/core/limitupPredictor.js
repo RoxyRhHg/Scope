@@ -1,15 +1,15 @@
 /**
  * 涨停预测评分引擎
  *
- * 基于一年历史涨停数据 + 技术指标 + 基本面安全边际，
+ * 基于一年历史涨停数据 + 技术指标 + 安全边际 + 生意模式，
  * 预测未来10个交易日内涨停/大幅拉升概率。
  *
  * 评分因子（五维）：
- * 1. 技术形态分 (30%) — MACD/BOLL/KDJ/均线/量价
- * 2. 涨停基因分 (25%) — 历史涨停频率/连板能力/近期涨停密度
- * 3. 量价动量分 (20%) — 量比/换手率/突破信号
+ * 1. 技术形态分 (25%) — MACD/BOLL/KDJ/均线/量价
+ * 2. 涨停基因分 (20%) — 历史涨停频率/连板能力/近期涨停密度
+ * 3. 量价动量分 (15%) — 量比/换手率/突破信号
  * 4. 行业热度分 (15%) — 概念板块轮动/板块涨停密度
- * 5. 安全边际分 (10%) — 估值/核心分/风险标记
+ * 5. 安全边际+生意模式分 (25%) — 估值/安全边际/生意模式质量/核心分/风险标记
  */
 
 import fs from "node:fs";
@@ -252,7 +252,7 @@ function scoreIndustryHeat(stock, limitupHistory) {
   return { score: clamp(round(score), 0, 100), signals };
 }
 
-// ── 5. 安全边际评分 (10%) ──
+// ── 5. 安全边际 + 生意模式评分 (25%) ──
 
 function scoreSafety(stock) {
   let score = 50;
@@ -263,22 +263,30 @@ function scoreSafety(stock) {
   // 估值
   if (stock.maoValuation) {
     const tier = stock.maoValuation.valuationTier;
-    if (tier === "低估") { score += 25; signals.push("估值低估"); }
-    else if (tier === "合理偏低") { score += 15; signals.push("估值合理偏低"); }
-    else if (tier === "合理") { score += 5; }
-    else if (tier === "偏高估") { score -= 10; signals.push("估值偏高"); }
-    else if (tier === "明显高估") { score -= 25; signals.push("估值过高"); }
+    if (tier === "低估") { score += 20; signals.push("估值低估"); }
+    else if (tier === "合理偏低") { score += 12; signals.push("估值合理偏低"); }
+    else if (tier === "合理") { score += 3; }
+    else if (tier === "偏高估") { score -= 15; signals.push("估值偏高"); }
+    else if (tier === "明显高估") { score -= 30; signals.push("估值过高"); }
 
     // 安全边际
     const margin = stock.maoValuation.marginOfSafety;
-    if (margin >= 0.10 && margin <= 0.20) { score += 15; signals.push(`安全边际${round(margin * 100)}%`); }
-    else if (margin > 0.20 && margin <= 0.30) { score += 10; signals.push(`安全边际${round(margin * 100)}%`); }
-    else if (margin > 0.30) { score += 5; }
+    if (margin >= 0.20) { score += 18; signals.push(`安全边际${round(margin * 100)}%(强)`); }
+    else if (margin >= 0.10) { score += 12; signals.push(`安全边际${round(margin * 100)}%`); }
+    else if (margin >= 0.05) { score += 5; }
+    else if (margin < 0) { score -= 10; signals.push("无安全边际"); }
   }
 
+  // 生意模式质量
+  const bmScore = stock.metrics?.businessModelQuality ?? stock.metrics?.businessQuality ?? 0;
+  if (bmScore >= 80) { score += 15; signals.push("生意模式优秀"); }
+  else if (bmScore >= 70) { score += 10; signals.push("生意模式良好"); }
+  else if (bmScore >= 60) { score += 5; }
+  else if (bmScore < 50) { score -= 5; }
+
   // 核心分
-  if (stock.scores?.core >= 78) { score += 10; signals.push("核心分优秀"); }
-  else if (stock.scores?.core >= 65) { score += 5; }
+  if (stock.scores?.core >= 78) { score += 8; signals.push("核心分优秀"); }
+  else if (stock.scores?.core >= 65) { score += 4; }
   else if (stock.scores?.core < 55) { score -= 10; }
 
   // 风险标记
@@ -325,13 +333,13 @@ export function predictLimitup(stock, technicals, bars, limitupHistory) {
   const industryScore = scoreIndustryHeat(stock, limitupHistory);
   const safetyScore = scoreSafety(stock);
 
-  // 加权总分
+  // 加权总分（安全边际+生意模式占25%）
   const totalScore = round(
-    techScore.score * 0.30 +
-    geneScore.score * 0.25 +
-    momentumScore.score * 0.20 +
+    techScore.score * 0.25 +
+    geneScore.score * 0.20 +
+    momentumScore.score * 0.15 +
     industryScore.score * 0.15 +
-    safetyScore.score * 0.10
+    safetyScore.score * 0.25
   );
 
   // 合并所有信号
@@ -351,11 +359,12 @@ export function predictLimitup(stock, technicals, bars, limitupHistory) {
   else if (totalScore >= 35) probability = "低";
   else probability = "极低";
 
-  // 建议动作
+  // 建议动作（安全边际+生意模式是核心门槛）
   let action;
-  if (totalScore >= 75 && safetyScore.score >= 60) action = "积极关注";
-  else if (totalScore >= 60 && safetyScore.score >= 40) action = "纳入观察";
-  else if (totalScore < 40) action = "暂不考虑";
+  if (totalScore >= 70 && safetyScore.score >= 70) action = "强烈关注";
+  else if (totalScore >= 60 && safetyScore.score >= 55) action = "积极关注";
+  else if (totalScore >= 50 && safetyScore.score >= 40) action = "纳入观察";
+  else if (totalScore < 40 || safetyScore.score < 30) action = "暂不考虑";
   else action = "谨慎观望";
 
   return {

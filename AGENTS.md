@@ -1,55 +1,57 @@
-# [项目名称]
+# Scope — AI Agent 维护指南
 
-## 角色定位
+## 项目概述
 
-你在本项目中担任**执行工程师**。你的职责：
-- 严格按照 Claude 给出的任务书实施
-- 不偏离规格、不自行扩展需求
-- 实施完成后按交付规范汇报
+A 股价值投资筛选系统，基于段永平投资哲学。核心功能：今日热点题材、重点关注股票、涨停预测、ETF/LOF。
 
-你不是架构师 — 不要在实施时自行修改方案。如果你认为规格有问题，**先停下来报告**，不要自己改。
+## 快速上手
 
-## 技术栈
+```bash
+# 启动服务
+node src/server.js
+# 访问 http://127.0.0.1:4173
 
-- [前端框架]
-- [后端语言]
-- [数据库]
-- [其他关键依赖]
-
-## 项目结构
-
-```
-[待填写]
+# 运行测试
+npm test
 ```
 
-## 关键约束
+## 架构要点
 
-- [约束1]
-- [约束2]
+1. **前端单文件**：`public/start.html` 是自包含的 HTML，内嵌 CSS + JS，不依赖任何外部文件
+2. **后端 API**：`src/server.js` 提供 REST API，返回已评分的数据
+3. **数据流**：新浪行情 → `realDataAdapter` → `ranking` → `dashboard` → API → 前端
+4. **评分体系**：段永平哲学融合版，详见 `shared/investment-philosophy.md`
 
-## 工作流
+## 关键 API 响应结构
 
-### 接到任务书时
-1. 读 `shared/task-bridge.md` 或对应的 `shared/task-briefs/T*.md`
-2. 确认你理解验收标准
-3. 如果任务不清晰，**不要猜测** — 停下，说明哪里不清楚
-4. 按任务书的「实施步骤」逐条执行
+`/api/dashboard` 返回的每个 stock item 包含：
+- `scores`: `{ total, core, auxiliary, capitalFit }`
+- `buyZoneLow`, `buyZoneHigh`: 建议买入区间
+- `optimisticValue`: 理想价值（卖出参考）
+- `marginOfSafety`: 安全边际百分比
+- `valuationTier`: 估值档位（低估/合理偏低/合理/偏高估/高估）
+- `businessBrief`: 生意模式简述
+- `conclusion`: 投资结论
 
-### 实施时
-1. **最小改动** — 只写任务需要的代码
-2. **不改相邻代码** — 不改格式、不重构、不"顺手优化"
-3. **匹配现有风格** — 缩进、命名、引号，跟周围代码一致
-4. **每完成一个子步骤，立刻验证**
+## 前端开发注意
 
-### 交付时
-1. 跑 `npm test`（或项目对应的测试命令）
-2. 贴测试输出
-3. 按 `shared/handoff-codex-to-claude.md` 格式汇报
-4. 列出所有改动文件 + 改动行数
+- 搜索框必须用 `compositionstart/end` 处理中文 IME
+- 所有股票列表必须展示买入区间和安全边际
+- 点击股票必须能打开详情卡片
+- 过滤规则：排除 688xxx（科创板）和 price > 90
 
-## 行为准则
+## 文件清单
 
-1. **Think Before Coding**: 动手前确认理解，不确定就问
-2. **Simplicity First**: 最小代码量解决问题，不过度设计
-3. **Surgical Changes**: 只改需要改的，不碰其他代码
-4. **Goal-Driven Execution**: 每个步骤完成后验证，不假设通过
+| 文件 | 用途 |
+|------|------|
+| `public/start.html` | 前端入口 |
+| `src/server.js` | API 服务 |
+| `src/core/ranking.js` | 评分排名 |
+| `src/core/dashboard.js` | 数据模型 |
+| `src/core/realDataAdapter.js` | 数据适配 |
+| `src/core/technicalIndicators.js` | 技术分析 |
+| `src/core/limitupPredictor.js` | 涨停预测 |
+| `src/core/businessBrief.js` | 生意模式简述 |
+| `scripts/fetch_live_snapshot.py` | 实时行情抓取 |
+| `scripts/fetch_limitup_history.py` | 涨停历史采集 |
+| `shared/investment-philosophy.md` | 投资逻辑文档 |
