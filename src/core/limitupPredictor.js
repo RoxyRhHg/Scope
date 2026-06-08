@@ -28,8 +28,8 @@ const PRIORITY_INDUSTRIES = [
   "计算机", "软件", "信息技术",
 ];
 
-// 排除行业
-const EXCLUDE_INDUSTRIES = ["煤炭", "石油", "天然气", "传统能源"];
+// 排除行业（用户看不懂的）
+const EXCLUDE_INDUSTRIES = ["煤炭", "石油", "天然气", "传统能源", "能源", "储能", "电池", "新能源"];
 
 // ── 工具函数 ──
 function round(v, d = 2) {
@@ -160,7 +160,8 @@ export function predictLimitup(stock, technicals, bars, limitupHistory) {
   const code = stock.code;
 
   // 硬性排除
-  if (code.startsWith("688")) return null;
+  if (code.startsWith("688")) return null; // 科创板
+  if (code.startsWith("8") || code.startsWith("9")) return null; // 北交所
   if (stock.stopDoingBlocked) return null;
   const stockName = stock.name || "";
   if (stockName.includes("*ST") || stockName.includes("*st")) return null;
@@ -255,6 +256,9 @@ export function batchPredict(snapshot, technicalCache, limitupHistory, filters =
   for (const stock of snapshot) {
     // 基础过滤
     if (excludeStar && stock.code?.startsWith("688")) continue;
+    // 排除北交所（8xx, 9xx，但不包括6xx, 0xx, 3xx）
+    const code = stock.code || "";
+    if (code.startsWith("8") || code.startsWith("9")) continue;
     if (stock.price > maxPrice || stock.price <= 0) continue;
     if (stock.stopDoingBlocked) continue;
 
