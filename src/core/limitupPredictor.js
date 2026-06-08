@@ -200,41 +200,33 @@ export function predictLimitup(stock, technicals, bars, limitupHistory) {
   else if (totalScore >= 50) action = "纳入观察";
   else action = "谨慎观望";
 
-  // 信号
-  const signals = [];
-  if (margin >= 15) signals.push(`安全边际${margin.toFixed(1)}%(强)`);
-  else signals.push(`安全边际${margin.toFixed(1)}%`);
-  if (stock.valuationTier) signals.push(`估值${stock.valuationTier}`);
-  if (industryScore >= 70) signals.push("优先行业");
-  if (limitupScore >= 50) signals.push("涨停潜力高");
-  if (capitalScore >= 60) signals.push("资金流入");
-
   // 涨停历史
   const stockLimitup = limitupHistory?.limitup_events?.[code];
   const limitupCount = stockLimitup?.count || 0;
   const maxConsecutive = stockLimitup?.max_consecutive || 0;
-  if (maxConsecutive >= 2) signals.push(`${maxConsecutive}连板历史`);
+
+  // 行业类型（简化显示）
+  const industryType = stock.industry || "未知行业";
+
+  // 公司业务概述
+  const businessBrief = stock.businessBrief || "暂无概述";
+
+  // 当日涨幅
+  const changePercent = stock.changePercent || 0;
 
   return {
     code: stock.code,
     name: stock.name,
     type: stock.type || "stock",
-    industry: stock.industry,
-    concepts: (stock.concepts || []).slice(0, 3),
     price: stock.price,
-    // 四维子分
-    dimensions: {
-      safety: safetyScore,
-      limitupPotential: limitupScore,
-      industry: industryScore,
-      capitalFlow: capitalScore,
-    },
-    // 总分与预测
+    // 显示字段
+    industryType,
+    businessBrief,
+    changePercent,
+    // 评分
     totalScore,
     probability,
     action,
-    // 信号
-    signals,
     // 安全边际
     marginOfSafety: margin,
     valuationTier: stock.valuationTier,

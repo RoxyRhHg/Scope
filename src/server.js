@@ -297,6 +297,8 @@ function stockSummary(s) {
     marginOfSafety: mv.marginOfSafety ?? null,
     businessBrief: generateBusinessBrief(s),
     consensusConfidence: s.consensus?.confidence ?? null,
+    // 新增：当日涨幅
+    changePercent: s.raw?.changePct ?? 0,
   };
 }
 

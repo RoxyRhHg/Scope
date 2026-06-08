@@ -70,9 +70,94 @@ export function generateBusinessBrief(stock) {
     return industryBrief;
   }
 
+  // 基于行业和概念生成描述
+  const industry = stock.industry || "";
+  const concepts = stock.concepts || [];
+
+  // 提取行业关键词
+  const industryKeywords = {
+    "半导体": "半导体芯片",
+    "芯片": "半导体芯片",
+    "存储": "存储芯片",
+    "光学": "光学光电子",
+    "光电子": "光学光电子",
+    "显示": "显示屏",
+    "面板": "显示屏",
+    "通信设备": "通信设备",
+    "光通信": "光通信",
+    "CPO": "CPO光模块",
+    "AI": "人工智能",
+    "人工智能": "人工智能",
+    "算力": "算力服务器",
+    "数据": "数据服务",
+    "机器人": "机器人",
+    "具身智能": "具身智能",
+    "智能驾驶": "智能驾驶",
+    "物理AI": "物理AI",
+    "电子": "电子元器件",
+    "消费电子": "消费电子",
+    "传感器": "传感器",
+    "封测": "封测",
+    "计算机": "计算机",
+    "软件": "软件服务",
+    "信息技术": "信息技术",
+    "新能源": "新能源",
+    "电池": "电池",
+    "储能": "储能",
+    "光伏": "光伏",
+    "风电": "风电",
+    "电力": "电力",
+    "有色金属": "有色金属",
+    "医药": "医药",
+    "生物": "生物",
+    "化工": "化工",
+    "机械": "机械设备",
+    "汽车": "汽车",
+    "房地产": "房地产",
+    "建筑": "建筑工程",
+    "食品": "食品饮料",
+    "酒": "酒类",
+    "家电": "家电",
+    "纺织": "纺织服装",
+    "钢铁": "钢铁",
+    "煤炭": "煤炭",
+    "石油": "石油",
+    "天然气": "天然气",
+  };
+
+  // 从行业字段提取关键词
+  let industryName = "";
+  for (const [keyword, name] of Object.entries(industryKeywords)) {
+    if (industry.includes(keyword)) {
+      industryName = name;
+      break;
+    }
+  }
+
+  // 从概念中提取
+  let conceptName = "";
+  for (const concept of concepts) {
+    for (const [keyword, name] of Object.entries(industryKeywords)) {
+      if (concept.includes(keyword)) {
+        conceptName = name;
+        break;
+      }
+    }
+    if (conceptName) break;
+  }
+
+  // 生成描述
+  if (industryName && conceptName && industryName !== conceptName) {
+    return `${industryName}+${conceptName}`;
+  } else if (industryName) {
+    return industryName;
+  } else if (conceptName) {
+    return conceptName;
+  }
+
   // 兜底：基于估值档位
   const tier = stock.maoValuation?.valuationTier ?? stock.valuationCard?.valuationTier;
   if (tier === "低估") return "估值偏低，关注基本面验证";
   if (tier === "合理偏低") return "估值合理偏低，有安全边际";
-  return `${stock.industry ?? "未分类"}行业候选`;
+  return `${stock.industry ?? "未分类"}行业`;
 }
