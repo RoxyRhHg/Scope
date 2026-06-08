@@ -212,7 +212,8 @@ function openDetail(code){
     <div class="detail-section">
       <h3>涨停预测</h3>
       <p>概率：<strong>${esc(pred.probability||'-')}</strong> · 当日涨幅：${pred.changePercent!=null?(pred.changePercent>=0?'+':'')+pred.changePercent.toFixed(2)+'%':'-'} · 历史涨停 ${pred.limitupCount||0} 次</p>
-      <p>行业：${esc(pred.industryType||pred.businessBrief||'-')}</p>
+      <p>行业：${esc(pred.industry||'-')}</p>
+      <p>业务：${esc(pred.businessBrief||'-')}</p>
       <p>安全边际：${pred.marginOfSafety!=null?pred.marginOfSafety.toFixed(1)+'%':'-'}</p>
       <p style="margin-top:6px">操作建议：<span class="tag ${pred.action?.includes('强烈')?'g':pred.action?.includes('纳入')?'y':''}">${esc(pred.action||'-')}</span></p>
     </div>`:''}
@@ -434,14 +435,15 @@ function renderHome(themes,ranked,preds){
         const rz=ranked.find(r=>r.code===p.code);
         const bz=rz&&rz._bl!=null?'¥'+f(rz._bl,1)+'~¥'+f(rz._bh,1):'-';
         const mg=rz?rz._mg:null;
+        const chg=p.changePercent;const chgColor=chg>0?'color:var(--rd)':chg<0?'color:var(--gr)':'';
         return`<tr style="cursor:pointer" onclick="openDetail('${esc(p.code)}')">
           <td><div class="nm"><b>${esc(p.name)}</b><small>${esc(p.code)}</small></div></td>
           <td class="pr">¥${f(p.price)}</td>
           <td><span class="prob ${pc}">${esc(prob)}</span></td>
-          <td><b>${p.changePercent!=null?(p.changePercent>=0?'+':'')+p.changePercent.toFixed(2)+'%':'-'}</b></td>
+          <td><b style="${chgColor}">${chg!=null?(chg>=0?'+':'')+chg.toFixed(2)+'%':'-'}</b></td>
           <td class="bz">${bz}</td>
           <td class="mg ${mg>=20?'mg-h':mg>=10?'mg-o':'mg-l'}">${fp(mg)}</td>
-          <td>${esc(p.industryType||p.businessBrief||'-')}</td>
+          <td><div style="font-size:12px">${esc(p.industry||'-')}</div><div style="font-size:11px;color:var(--mt)">${esc(p.businessBrief||'')}</div></td>
           <td><span class="tag ${p.action?.includes('强烈')?'g':p.action?.includes('积极')?'g':p.action?.includes('纳入')?'y':''}">${esc(p.action||'-')}</span></td>
         </tr>`;
       }).join('')}
@@ -476,20 +478,21 @@ function renderStockTable(stks,title,sub){
 function renderLimitup(preds,ranked){
   return`<div class="sec"><div class="sec-h"><h2>十日内最可能涨停</h2><span class="sub">安全边际+涨停潜力 · 点击看详情</span></div>
   <div class="tw"><table><thead><tr>
-    <th>名称</th><th>现价</th><th>当日涨幅</th><th>安全边际</th><th>概率</th><th>行业</th><th>操作</th>
+    <th>名称</th><th>现价</th><th>当日涨幅</th><th>安全边际</th><th>概率</th><th>行业+业务</th><th>操作</th>
   </tr></thead><tbody>
   ${preds.length===0?'<tr><td colspan="7" style="text-align:center;color:var(--mt);padding:16px">暂无预测数据</td></tr>':''}
   ${preds.map(p=>{
     const prob=p.probability||'-';const pc=prob.includes('高')?'prob-hi':prob.includes('中')?'prob-md':'prob-lo';
     const rz=ranked.find(r=>r.code===p.code);
     const mg=rz?rz._mg:p.marginOfSafety;
+    const chg=p.changePercent;const chgColor=chg>0?'color:var(--rd)':chg<0?'color:var(--gr)':'';
     return`<tr style="cursor:pointer" onclick="openDetail('${esc(p.code)}')">
       <td><div class="nm"><b>${esc(p.name)}</b><small>${esc(p.code)}</small></div></td>
       <td class="pr">¥${f(p.price)}</td>
-      <td><b>${p.changePercent!=null?(p.changePercent>=0?'+':'')+p.changePercent.toFixed(2)+'%':'-'}</b></td>
+      <td><b style="${chgColor}">${chg!=null?(chg>=0?'+':'')+chg.toFixed(2)+'%':'-'}</b></td>
       <td class="mg ${mg>=20?'mg-h':mg>=10?'mg-o':'mg-l'}">${mg!=null?fp(mg):'-'}</td>
       <td><span class="prob ${pc}">${esc(prob)}</span></td>
-      <td>${esc(p.industryType||p.businessBrief||'-')}</td>
+      <td><div style="font-size:12px">${esc(p.industry||'-')}</div><div style="font-size:11px;color:var(--mt)">${esc(p.businessBrief||'')}</div></td>
       <td><span class="tag ${p.action?.includes('强烈')?'g':p.action?.includes('积极')?'g':p.action?.includes('纳入')?'y':''}">${esc(p.action||'-')}</span></td>
     </tr>`;
   }).join('')}
