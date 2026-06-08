@@ -697,12 +697,16 @@ const server = http.createServer((request, response) => {
     const priorityOnly = parsedRequest.searchParams.get("priorityOnly") === "1";
 
     const history = loadLimitupHistory();
-    const snapshot = liveCache.snapshot?.items ?? [];
+    const rawSnapshot = liveCache.snapshot?.items ?? [];
 
-    if (!snapshot.length) {
+    if (!rawSnapshot.length) {
       sendJson(response, 200, { ok: false, message: "市场快照为空，请先刷新数据" });
       return;
     }
+
+    // 使用 dashboard 模型获取包含 marginOfSafety 的数据
+    const model = buildDashboardModel(liveCache.snapshot, createDefaultSettings());
+    const snapshot = model.rankedAll.map(s => stockSummary(s));
 
     const predictions = batchPredict(snapshot, technicalCache, history, {
       maxPrice,
