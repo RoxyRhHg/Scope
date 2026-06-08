@@ -938,6 +938,7 @@ const server = http.createServer((request, response) => {
   serveFile(filePath, response);
 });
 
-server.listen(port, "127.0.0.1", () => {
+server.listen(port, "0.0.0.0", () => {
   console.log(`Scope MVP running at http://127.0.0.1:${port}`);
+  console.log(`LAN access: http://0.0.0.0:${port}`);
 });

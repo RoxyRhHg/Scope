@@ -117,11 +117,11 @@ const f=(v,d=2)=>v!=null?v.toFixed(d):'-';
 const fp=v=>v!=null?v.toFixed(1)+'%':'-';
 const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-async function load(){
+async function load(force){
   const el=document.getElementById('app');
   el.innerHTML='<div class="ld"><div class="sp"></div><br>加载市场数据...</div>';
   try{
-    const[r1,r2,r3]=await Promise.all([fetch(A+'/dashboard'),fetch(A+'/etf'),fetch(A+'/limitup-predict?limit=50&maxPrice=90').catch(()=>null)]);
+    const[r1,r2,r3]=await Promise.all([fetch(A+'/dashboard'+(force?'?force=1':'')),fetch(A+'/etf'),fetch(A+'/limitup-predict?limit=50&maxPrice=90').catch(()=>null)]);
     if(!r1.ok)throw new Error('dashboard API '+r1.status);
     D=await r1.json();
     if(!D.snapshot?.items?.length)throw new Error('快照数据为空');
@@ -258,7 +258,7 @@ function render(){
         <span class="pill ${live?'live':'err'}">${live?'实时':'样例'}</span>
         <span class="hdr-sm">${ranked.length}只候选 · ${focus.length}只重点</span>
         <span class="hdr-sm">数据时间：${D.snapshot?.generatedAt?new Date(D.snapshot.generatedAt).toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}):'-'}</span>
-        <button class="btn" onclick="load()">刷新</button>
+        <button class="btn" onclick="load(true)">刷新</button>
       </div>
     </div>
     <div class="tabs">
