@@ -211,8 +211,9 @@ function openDetail(code){
     ${pred?`
     <div class="detail-section">
       <h3>涨停预测</h3>
-      <p>概率：<strong>${esc(pred.probability||'-')}</strong> · 总分：${f(pred.totalScore,1)} · 历史涨停 ${pred.limitupCount||0} 次</p>
-      <div class="detail-signals" style="margin-top:6px">${(pred.signals??[]).map(s=>'<span class="sig">'+esc(s)+'</span>').join('')}</div>
+      <p>概率：<strong>${esc(pred.probability||'-')}</strong> · 当日涨幅：${pred.changePercent!=null?(pred.changePercent>=0?'+':'')+pred.changePercent.toFixed(2)+'%':'-'} · 历史涨停 ${pred.limitupCount||0} 次</p>
+      <p>行业：${esc(pred.industryType||pred.businessBrief||'-')}</p>
+      <p>安全边际：${pred.marginOfSafety!=null?pred.marginOfSafety.toFixed(1)+'%':'-'}</p>
       <p style="margin-top:6px">操作建议：<span class="tag ${pred.action?.includes('强烈')?'g':pred.action?.includes('纳入')?'y':''}">${esc(pred.action||'-')}</span></p>
     </div>`:''}
 
@@ -426,7 +427,7 @@ function renderHome(themes,ranked,preds){
     <div class="sec">
       <div class="sec-h"><h2>十日内最可能涨停</h2><span class="sub">Top 8 · 点击看详情</span></div>
       <div class="tw"><table><thead><tr>
-        <th>名称</th><th>现价</th><th>概率</th><th>总分</th><th>买入区间</th><th>安全边际</th><th>信号</th><th>操作</th>
+        <th>名称</th><th>现价</th><th>概率</th><th>当日涨幅</th><th>买入区间</th><th>安全边际</th><th>行业</th><th>操作</th>
       </tr></thead><tbody>
       ${preds.slice(0,8).map(p=>{
         const prob=p.probability||'-';const pc=prob.includes('高')?'prob-hi':prob.includes('中')?'prob-md':'prob-lo';
@@ -437,10 +438,10 @@ function renderHome(themes,ranked,preds){
           <td><div class="nm"><b>${esc(p.name)}</b><small>${esc(p.code)}</small></div></td>
           <td class="pr">¥${f(p.price)}</td>
           <td><span class="prob ${pc}">${esc(prob)}</span></td>
-          <td><b>${p.totalScore?.toFixed(1)||'-'}</b></td>
+          <td><b>${p.changePercent!=null?(p.changePercent>=0?'+':'')+p.changePercent.toFixed(2)+'%':'-'}</b></td>
           <td class="bz">${bz}</td>
           <td class="mg ${mg>=20?'mg-h':mg>=10?'mg-o':'mg-l'}">${fp(mg)}</td>
-          <td>${(p.signals??[]).slice(0,2).map(s=>'<span class="sig">'+esc(s)+'</span>').join('')}</td>
+          <td>${esc(p.industryType||p.businessBrief||'-')}</td>
           <td><span class="tag ${p.action?.includes('强烈')?'g':p.action?.includes('积极')?'g':p.action?.includes('纳入')?'y':''}">${esc(p.action||'-')}</span></td>
         </tr>`;
       }).join('')}
@@ -473,48 +474,22 @@ function renderStockTable(stks,title,sub){
 }
 
 function renderLimitup(preds,ranked){
-  return`<div class="sec"><div class="sec-h"><h2>十日内最可能涨停</h2><span class="sub">安全边际+生意模式占25%权重 · 点击看详情</span></div>
+  return`<div class="sec"><div class="sec-h"><h2>十日内最可能涨停</h2><span class="sub">安全边际+涨停潜力 · 点击看详情</span></div>
   <div class="tw"><table><thead><tr>
-    <th>名称</th><th>现价</th><th>内在价值</th><th>安全边际</th><th>概率</th><th>总分</th><th>预计时间</th><th>信号</th><th>操作</th>
+    <th>名称</th><th>现价</th><th>当日涨幅</th><th>安全边际</th><th>概率</th><th>行业</th><th>操作</th>
   </tr></thead><tbody>
-  ${preds.length===0?'<tr><td colspan="9" style="text-align:center;color:var(--mt);padding:16px">暂无预测数据</td></tr>':''}
+  ${preds.length===0?'<tr><td colspan="7" style="text-align:center;color:var(--mt);padding:16px">暂无预测数据</td></tr>':''}
   ${preds.map(p=>{
     const prob=p.probability||'-';const pc=prob.includes('高')?'prob-hi':prob.includes('中')?'prob-md':'prob-lo';
-    const d=p.dimensions||{};
-    // 从 ranked 获取安全边际和内在价值
     const rz=ranked.find(r=>r.code===p.code);
-    const intrinsic=rz?rz._op:null;
-    const mg=rz?rz._mg:null;
-    // 预计未来涨停时间：根据涨停频率和最近一次涨停推算
-    const recent=p.recentLimitup||[];
-    const count=p.limitupCount||0;
-    let estTime='-';
-    if(count>0&&recent.length>0){
-      const lastDate=recent[recent.length-1]?.date;
-      if(lastDate){
-        const daysSince=Math.floor((Date.now()-new Date(lastDate))/86400000);
-        // 平均涨停间隔（一年365天/涨停次数）
-        const avgInterval=Math.round(365/Math.max(count,1));
-        // 距离上次涨停的天数
-        const daysToNext=Math.max(0,avgInterval-daysSince);
-        if(daysSince<=5)estTime='近期刚涨停，随时可能再涨';
-        else if(daysToNext<=5)estTime='预计5天内';
-        else if(daysToNext<=10)estTime='预计10天内';
-        else if(daysToNext<=20)estTime='预计20天内';
-        else estTime='预计'+daysToNext+'天后';
-      }
-    }else if(count>0){
-      estTime='有涨停基因，时间不确定';
-    }
+    const mg=rz?rz._mg:p.marginOfSafety;
     return`<tr style="cursor:pointer" onclick="openDetail('${esc(p.code)}')">
       <td><div class="nm"><b>${esc(p.name)}</b><small>${esc(p.code)}</small></div></td>
       <td class="pr">¥${f(p.price)}</td>
-      <td class="iv">${intrinsic!=null?'¥'+f(intrinsic,1):'-'}</td>
+      <td><b>${p.changePercent!=null?(p.changePercent>=0?'+':'')+p.changePercent.toFixed(2)+'%':'-'}</b></td>
       <td class="mg ${mg>=20?'mg-h':mg>=10?'mg-o':'mg-l'}">${mg!=null?fp(mg):'-'}</td>
       <td><span class="prob ${pc}">${esc(prob)}</span></td>
-      <td><b>${p.totalScore?.toFixed(1)||'-'}</b></td>
-      <td style="font-size:11px">${esc(estTime)}</td>
-      <td>${(p.signals??[]).slice(0,2).map(s=>'<span class="sig">'+esc(s)+'</span>').join('')}</td>
+      <td>${esc(p.industryType||p.businessBrief||'-')}</td>
       <td><span class="tag ${p.action?.includes('强烈')?'g':p.action?.includes('积极')?'g':p.action?.includes('纳入')?'y':''}">${esc(p.action||'-')}</span></td>
     </tr>`;
   }).join('')}
