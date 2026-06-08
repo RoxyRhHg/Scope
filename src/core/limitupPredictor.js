@@ -206,11 +206,9 @@ export function predictLimitup(stock, technicals, bars, limitupHistory) {
   const limitupCount = stockLimitup?.count || 0;
   const maxConsecutive = stockLimitup?.max_consecutive || 0;
 
-  // 行业类型（简化显示）
-  const industryType = stock.industry || "未知行业";
-
-  // 公司业务概述
+  // 行业类型（使用 businessBrief 中的行业信息）
   const businessBrief = stock.businessBrief || "暂无概述";
+  const industryType = businessBrief !== "暂无概述" ? businessBrief : (stock.industry || "未知行业");
 
   // 当日涨幅
   const changePercent = stock.changePercent || 0;
