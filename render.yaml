@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: scope-a-share
+    runtime: image
+    image:
+      context: .
+      dockerfile: Dockerfile
+    envVars:
+      - key: PORT
+        value: "10000"
+    plan: free
+    region: singapore
+    autoDeploy: true

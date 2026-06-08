@@ -53,7 +53,8 @@ function safeDiv(a, b, fallback = 0) {
 // ── 1. 技术形态评分 (30%) ──
 
 function scoreTechnicals(technicals, bars) {
-  if (!technicals || !bars || bars.length < 35) return { score: 0, signals: [] };
+  // 无技术数据时返回中性分（而非0），避免拖累有涨停基因但缺技术缓存的股票
+  if (!technicals || !bars || bars.length < 35) return { score: 30, signals: ["技术数据不足"] };
 
   let score = 50; // 基线
   const signals = [];
@@ -118,6 +119,47 @@ function scoreTechnicals(technicals, bars) {
 
 // ── 2. 涨停基因评分 (25%) ──
 
+/**
+ * 检测连板（连续涨停）模式
+ * 连板是A股最强的短线信号之一，2连板以上的股票再次涨停概率显著提高
+ */
+function detectConsecutiveLimitups(events) {
+  if (!events || events.length < 2) return { maxStreak: 0, currentStreak: 0, recentStreak: 0 };
+
+  // 按日期排序
+  const sorted = [...events].filter(e => e.is_limit_up).sort((a, b) => a.date.localeCompare(b.date));
+  if (sorted.length < 2) return { maxStreak: sorted.length, currentStreak: 0, recentStreak: 0 };
+
+  let maxStreak = 1;
+  let currentStreak = 1;
+
+  for (let i = 1; i < sorted.length; i++) {
+    // 检查是否连续交易日（允许间隔1-2天，覆盖周末/节假日）
+    const prevDate = new Date(sorted[i - 1].date);
+    const currDate = new Date(sorted[i].date);
+    const dayDiff = (currDate - prevDate) / 86400000;
+
+    if (dayDiff <= 4) { // 允许最多4天间隔（含周末+节假日）
+      currentStreak++;
+      maxStreak = Math.max(maxStreak, currentStreak);
+    } else {
+      currentStreak = 1;
+    }
+  }
+
+  // 最近一次连板（从最后一个事件往前数）
+  let recentStreak = 1;
+  for (let i = sorted.length - 1; i > 0; i--) {
+    const prevDate = new Date(sorted[i - 1].date);
+    const currDate = new Date(sorted[i].date);
+    const dayDiff = (currDate - prevDate) / 86400000;
+    if (dayDiff <= 4) recentStreak++;
+    else break;
+  }
+
+  return { maxStreak, currentStreak: recentStreak, recentStreak };
+}
+
 function scoreLimitupGene(code, limitupData) {
   let score = 0;
   const signals = [];
@@ -129,18 +171,27 @@ function scoreLimitupGene(code, limitupData) {
 
   // 区分涨停和8%+大涨
   const limitUpEvents = events.filter(e => e.is_limit_up);
-  const surgeOnlyEvents = events.filter(e => !e.is_limit_up);
   const limitUpCount = limitUpEvents.length;
 
-  // 大幅拉升频率 (0-30分) — 包含8%+和涨停
-  if (count >= 15) { score += 30; signals.push(`年内${count}次大涨/${limitUpCount}涨停(高频)`); }
-  else if (count >= 8) { score += 25; signals.push(`年内${count}次大涨/${limitUpCount}涨停`); }
-  else if (count >= 4) { score += 18; signals.push(`年内${count}次大涨/${limitUpCount}涨停`); }
-  else if (count >= 1) { score += 10; signals.push(`年内${count}次大涨`); }
+  // 大幅拉升频率 (0-25分) — 包含8%+和涨停
+  if (count >= 15) { score += 25; signals.push(`年内${count}次大涨/${limitUpCount}涨停(高频)`); }
+  else if (count >= 8) { score += 20; signals.push(`年内${count}次大涨/${limitUpCount}涨停`); }
+  else if (count >= 4) { score += 15; signals.push(`年内${count}次大涨/${limitUpCount}涨停`); }
+  else if (count >= 1) { score += 8; signals.push(`年内${count}次大涨`); }
 
   // 涨停占比加分 — 涨停越多说明越强
-  if (limitUpCount >= 5) { score += 8; signals.push(`${limitUpCount}次涨停(强基因)`); }
-  else if (limitUpCount >= 2) { score += 4; }
+  if (limitUpCount >= 5) { score += 6; signals.push(`${limitUpCount}次涨停(强基因)`); }
+  else if (limitUpCount >= 2) { score += 3; }
+
+  // 连板检测 — A股最强短线信号
+  const streak = detectConsecutiveLimitups(events);
+  if (streak.maxStreak >= 3) { score += 20; signals.push(`${streak.maxStreak}连板(超强基因)`); }
+  else if (streak.maxStreak >= 2) { score += 12; signals.push(`${streak.maxStreak}连板`); }
+  // 最近一次连板如果就在近期，额外加分
+  if (streak.recentStreak >= 2 && streak.currentStreak >= 2) {
+    score += 8;
+    signals.push(`近期${streak.recentStreak}连板(热度延续)`);
+  }
 
   // 近期大涨密度（近30天）
   const now = new Date();
@@ -148,22 +199,23 @@ function scoreLimitupGene(code, limitupData) {
     const d = new Date(e.date);
     return (now - d) < 30 * 86400000;
   });
-  if (recent30.length >= 5) { score += 18; signals.push("近30天多次大涨"); }
-  else if (recent30.length >= 2) { score += 10; signals.push("近期有大涨"); }
-  else if (recent30.length >= 1) { score += 5; }
+  if (recent30.length >= 5) { score += 15; signals.push("近30天多次大涨"); }
+  else if (recent30.length >= 2) { score += 8; signals.push("近期有大涨"); }
+  else if (recent30.length >= 1) { score += 4; }
 
   // 近期大涨后是否强势
   if (events.length > 0) {
     const latest = events[events.length - 1];
     const daysSince = Math.floor((now - new Date(latest.date)) / 86400000);
-    if (daysSince <= 10) { score += 15; signals.push("10天内大涨过"); }
-    else if (daysSince <= 20) { score += 8; }
+    if (daysSince <= 5) { score += 12; signals.push("5天内大涨过(热度高)"); }
+    else if (daysSince <= 10) { score += 8; signals.push("10天内大涨过"); }
+    else if (daysSince <= 20) { score += 4; }
   }
 
   // 量比特征：涨停前量比越大越活跃
   const avgVr = events.reduce((sum, e) => sum + (e.volume_ratio || 0), 0) / Math.max(events.length, 1);
-  if (avgVr > 3) { score += 10; signals.push("涨停基因活跃"); }
-  else if (avgVr > 2) { score += 5; }
+  if (avgVr > 3) { score += 8; signals.push("涨停基因活跃"); }
+  else if (avgVr > 2) { score += 4; }
 
   return { score: clamp(round(score), 0, 100), signals };
 }
@@ -235,18 +287,33 @@ function scoreIndustryHeat(stock, limitupHistory) {
   if (stock.conceptHeat > 70) { score += 10; signals.push("概念热门"); }
   if (stock.conceptHeat > 90) { score -= 5; signals.push("概念过热"); }
 
-  // 板块涨停密度（同行业近期涨停多 = 板块轮动信号）
+  // 板块涨停密度 — 分析同行业/概念的涨停活跃度
   if (limitupHistory?.daily_limitups) {
     const recentDates = Object.keys(limitupHistory.daily_limitups).sort().slice(-10);
-    let sameIndustryCount = 0;
+    let totalRecentLimitups = 0;
+    let sameConceptCount = 0;
+
     for (const date of recentDates) {
       const stocks = limitupHistory.daily_limitups[date] || [];
-      // 简单匹配行业名称
-      sameIndustryCount += stocks.filter(s =>
-        (s.name && stock.name && s.name !== stock.name) // 不计自己
-      ).length;
+      totalRecentLimitups += stocks.length;
+      // 按概念匹配（daily_limitups 中的 name 字段）
+      for (const s of stocks) {
+        if (!s.name || s.name === stock.name) continue;
+        // 检查是否同行业（通过行业关键词匹配）
+        const sIndustry = s.industry || "";
+        const isSameIndustry = industry && sIndustry &&
+          (industry === sIndustry || industry.includes(sIndustry) || sIndustry.includes(industry));
+        if (isSameIndustry) sameConceptCount++;
+      }
     }
-    if (sameIndustryCount > 20) { score += 10; signals.push("板块涨停活跃"); }
+
+    // 板块整体活跃度
+    if (totalRecentLimitups > 500) { score += 8; signals.push("市场涨停活跃"); }
+    else if (totalRecentLimitups > 300) { score += 4; }
+
+    // 同行业涨停密度
+    if (sameConceptCount >= 10) { score += 12; signals.push("同行业涨停密集(轮动)"); }
+    else if (sameConceptCount >= 5) { score += 6; signals.push("同行业有涨停"); }
   }
 
   return { score: clamp(round(score), 0, 100), signals };
@@ -259,6 +326,11 @@ function scoreSafety(stock) {
   const signals = [];
 
   if (!stock) return { score: 0, signals: ["无数据"] };
+
+  // ST/*ST 股票大幅扣分
+  const name = stock.name || "";
+  const isST = name.toUpperCase().includes("ST");
+  if (isST) { score -= 25; signals.push("ST股票(高风险)"); }
 
   // 估值
   if (stock.maoValuation) {
@@ -275,6 +347,9 @@ function scoreSafety(stock) {
     else if (margin >= 0.10) { score += 12; signals.push(`安全边际${round(margin * 100)}%`); }
     else if (margin >= 0.05) { score += 5; }
     else if (margin < 0) { score -= 10; signals.push("无安全边际"); }
+  } else {
+    // 无估值数据时：不扣分到0，但标记为"待验证"
+    signals.push("估值待验证");
   }
 
   // 生意模式质量
@@ -282,12 +357,12 @@ function scoreSafety(stock) {
   if (bmScore >= 80) { score += 15; signals.push("生意模式优秀"); }
   else if (bmScore >= 70) { score += 10; signals.push("生意模式良好"); }
   else if (bmScore >= 60) { score += 5; }
-  else if (bmScore < 50) { score -= 5; }
+  else if (bmScore < 50 && bmScore > 0) { score -= 5; }
 
   // 核心分
   if (stock.scores?.core >= 78) { score += 8; signals.push("核心分优秀"); }
   else if (stock.scores?.core >= 65) { score += 4; }
-  else if (stock.scores?.core < 55) { score -= 10; }
+  else if (stock.scores?.core > 0 && stock.scores?.core < 55) { score -= 10; }
 
   // 风险标记
   const riskCount = stock.riskFlags?.length || 0;
@@ -320,6 +395,9 @@ export function predictLimitup(stock, technicals, bars, limitupHistory) {
   // 硬性排除
   if (code.startsWith("688")) return null; // 科创板
   if (stock.stopDoingBlocked) return null;  // 不为清单
+  // 排除 *ST 股票（退市风险极高）
+  const stockName = stock.name || "";
+  if (stockName.includes("*ST") || stockName.includes("*st")) return null;
 
   // 获取该股涨停历史
   const stockLimitup = limitupHistory?.limitup_events?.[code] ||
@@ -422,6 +500,9 @@ export function batchPredict(snapshot, technicalCache, limitupHistory, filters =
     if (stock.price > maxPrice) continue;
     if (stock.price <= 0) continue;
     if (stock.stopDoingBlocked) continue;
+    // 排除 *ST 股票
+    const name = stock.name || "";
+    if (name.includes("*ST") || name.includes("*st")) continue;
 
     // 优先行业过滤
     if (priorityOnly) {
