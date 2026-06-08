@@ -20,21 +20,16 @@ LIMITUP_CACHE = os.path.join(CACHE_DIR, "limitup-history.json")
 
 def get_trading_dates(days_back=250):
     """获取近 N 个交易日列表（跳过非交易日）"""
-    # 用沪指行情判断交易日
+    # 生成日期范围，逐日尝试获取数据
     end = datetime.now()
     start = end - timedelta(days=int(days_back * 1.6))
-    try:
-        df = ak.stock_zh_a_hist(
-            symbol="000001", period="daily",
-            start_date=start.strftime("%Y%m%d"),
-            end_date=end.strftime("%Y%m%d"),
-            adjust=""
-        )
-        dates = sorted(df["日期"].astype(str).tolist())
-        return dates[-days_back:] if len(dates) > days_back else dates
-    except Exception as e:
-        print(f"获取交易日失败: {e}", file=sys.stderr)
-        return []
+    dates = []
+    current = start
+    while current <= end:
+        if current.weekday() < 5:  # 跳过周末
+            dates.append(current.strftime("%Y-%m-%d"))
+        current += timedelta(days=1)
+    return dates[-days_back:]
 
 
 def fetch_limitup_for_date(date_str):
@@ -110,6 +105,12 @@ def build_result(daily_data, all_dates):
                 "change_pct": s["change_pct"],
                 "volume_ratio": s["volume_ratio"],
                 "limit_pct": s["limit_pct"],
+                "turnover": s.get("turnover", 0),
+                "industry": s.get("industry", ""),
+                "consecutive": s.get("consecutive", 1),
+                "zt_stats": s.get("zt_stats", ""),
+                "seal_money": s.get("seal_money", 0),
+                "broken_count": s.get("broken_count", 0),
             })
 
             code = s["code"]
