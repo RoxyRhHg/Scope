@@ -938,6 +938,29 @@ const server = http.createServer((request, response) => {
   serveFile(filePath, response);
 });
 
+// ── 自动刷新涨停数据（每4小时检查一次）──
+const limitupCachePath = path.join(root, ".cache", "limitup-history.json");
+const AKSHARE_SCRIPT = path.join(root, "scripts", "fetch_limitup_akshare.py");
+
+function refreshLimitupData() {
+  try {
+    if (fs.existsSync(limitupCachePath)) {
+      const stat = fs.statSync(limitupCachePath);
+      const ageHours = (Date.now() - stat.mtimeMs) / 3600000;
+      if (ageHours < 4) return; // 4小时内不刷新
+    }
+    console.log("Auto-refreshing limitup data via AKShare...");
+    execFile("python", [AKSHARE_SCRIPT, "--days", "21"], { timeout: 120000 }, (err, stdout, stderr) => {
+      if (err) console.log(`Limitup refresh failed: ${err.message}`);
+      else console.log("Limitup data refreshed successfully");
+    });
+  } catch { /* ignore */ }
+}
+
+// 启动后 30 秒检查一次，之后每 4 小时检查
+setTimeout(refreshLimitupData, 30000);
+setInterval(refreshLimitupData, 4 * 60 * 60 * 1000);
+
 server.listen(port, "0.0.0.0", () => {
   console.log(`Scope MVP running at http://127.0.0.1:${port}`);
   console.log(`LAN access: http://0.0.0.0:${port}`);

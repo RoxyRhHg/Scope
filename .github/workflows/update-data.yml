@@ -1,0 +1,35 @@
+name: Update Limitup Data
+
+on:
+  schedule:
+    # 每天 15:30 (UTC 07:30) 收盘后运行
+    - cron: '30 7 * * 1-5'
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python deps
+        run: pip install akshare pandas
+
+      - name: Collect limitup data
+        run: python scripts/fetch_limitup_akshare.py --days 21
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .cache/limitup-history.json
+          git diff --cached --quiet || git commit -m "Auto-update limitup data $(date +%Y-%m-%d)"
+          git push
