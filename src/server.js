@@ -950,15 +950,30 @@ function refreshLimitupData() {
       if (ageHours < 4) return; // 4小时内不刷新
     }
     console.log("Auto-refreshing limitup data via AKShare...");
-    execFile("python", [AKSHARE_SCRIPT, "--days", "21"], { timeout: 120000 }, (err, stdout, stderr) => {
-      if (err) console.log(`Limitup refresh failed: ${err.message}`);
-      else console.log("Limitup data refreshed successfully");
+
+    // 尝试多个 Python 路径
+    const pythonCmd = process.platform === "win32" ? "python" : "python3";
+    const script = AKSHARE_SCRIPT;
+
+    execFile(pythonCmd, [script, "--days", "21"], { timeout: 180000 }, (err, stdout, stderr) => {
+      if (err) {
+        console.log(`Limitup refresh failed (${pythonCmd}): ${err.message}`);
+        // 尝试 python3
+        if (pythonCmd === "python") {
+          execFile("python3", [script, "--days", "21"], { timeout: 180000 }, (err2) => {
+            if (err2) console.log(`Limitup refresh also failed with python3: ${err2.message}`);
+            else console.log("Limitup data refreshed successfully (python3)");
+          });
+        }
+      } else {
+        console.log("Limitup data refreshed successfully");
+      }
     });
-  } catch { /* ignore */ }
+  } catch (e) { console.log(`Limitup refresh error: ${e.message}`); }
 }
 
-// 启动后 30 秒检查一次，之后每 4 小时检查
-setTimeout(refreshLimitupData, 30000);
+// 启动后立即检查，之后每 4 小时检查
+refreshLimitupData();
 setInterval(refreshLimitupData, 4 * 60 * 60 * 1000);
 
 server.listen(port, "0.0.0.0", () => {
